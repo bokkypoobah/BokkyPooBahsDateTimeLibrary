@@ -1,8 +1,21 @@
 # BokkyPooBah's DateTime Library
 
+**Status: Work in progress**
+
+A low gas cost date & time calculation Solidity library.
+
+Instead of using loops and lookup tables, the date conversions in this library uses formulae to convert year/month/day hour:minute:second to a Unix timestamp, and back.
+
+NOTE that this library is currenly a Solidity contract, but will be converted into a library when the development is nearing completion.
+
+<br />
+
+<hr />
+
 ## Table Of Contents
 
-* [References](#references)
+* [Algorithm](#algorithm)
+* [Testing](#testing)
 
 <br />
 
@@ -10,9 +23,15 @@
 
 ## Algorithm
 
+The formulae to convert year/month/day hour:minute:second to a Unix timestamp and back use the algorithms from [Converting Between Julian Dates and Gregorian Calendar Dates](http://aa.usno.navy.mil/faq/docs/JD_Formula.php).
+
+Note that these algorithms depend on negative numbers, so Solidity unsigned integers `uint` are converted to signed integers `int` to compute the date conversions and the results are converted back to `uint` for general use.
+
+<br />
+
 ### Converting YYYYMMDD to Unix Timestamp
 
-From [Converting Between Julian Dates and Gregorian Calendar Dates](http://aa.usno.navy.mil/faq/docs/JD_Formula.php):
+The Fortran algorithm follows:
 
 ```
     INTEGER FUNCTION JD (YEAR,MONTH,DAY)
@@ -33,26 +52,22 @@ C
     END
 ```
 
-Translating this formula, and subtracting an offset so 1970/01/01 is day 0
+Translating this formula, and subtracting an offset so 1970/01/01 is day 0:
 
 ```
-1801 <= year <= 2099
-1 <= mm <= 12
-1 <= dd <= 31
-
-ddd = dd
-    - 32075
-    + 1461 * (yyyy + 4800 + (mm - 14) / 12) / 4
-    + 367 * (mm - 2 - (mm - 14) / 12 * 12) / 12
-    - 3 * ((yyyy + 4900 + (mm - 14) / 12) / 100) / 4
-    - offset
+days = day
+     - 32075
+     + 1461 * (year + 4800 + (month - 14) / 12) / 4
+     + 367 * (month - 2 - (month - 14) / 12 * 12) / 12
+     - 3 * ((year + 4900 + (month - 14) / 12) / 100) / 4
+     - offset
 ```
 
 <br />
 
 ### Converting Unix Timestamp To YYYYMMDD
 
-From [Converting Between Julian Dates and Gregorian Calendar Dates](http://aa.usno.navy.mil/faq/docs/JD_Formula.php):
+The Fortran algorithm follows:
 
 ```
     SUBROUTINE GDATE (JD, YEAR,MONTH,DAY)
@@ -81,24 +96,37 @@ C
     END
  ```
 
-Translating this formula and adding an offset so 1970/01/01 is day 0
+Translating this formula and adding an offset so 1970/01/01 is day 0:
 
 ```
-1801 <= year <= 2099
-1 <= mm <= 12
-1 <= dd <= 31
-
-int L = ddd + 68569 + offset
+int L = days + 68569 + offset
 int N = 4 * L / 146097
 L = L - (146097 * N + 3) / 4
-yyyy = 4000 * (L + 1) / 1461001
-L = L - 1461 * yyyy / 4 + 31
-mm = 80 * L / 2447
-dd = L - 2447 * mm / 80
-L = mm / 11
-mm = mm + 2 - 12 * L
-yyyy = 100 * (N - 49) + yyyy + L
+year = 4000 * (L + 1) / 1461001
+L = L - 1461 * year / 4 + 31
+month = 80 * L / 2447
+dd = L - 2447 * month / 80
+L = month / 11
+month = month + 2 - 12 * L
+year = 100 * (N - 49) + year + L
 ```
+
+<br />
+
+<hr />
+
+## Testing
+
+Details of the testing environment can be found in [test](test).
+
+The following functions were tested using the script [test/01_test1.sh](test/01_test1.sh) with the summary results saved
+in [test/test1results.txt](test/test1results.txt) and the detailed output saved in [test/test1output.txt](test/test1output.txt):
+
+* [x] Deploy DateTime library
+* [x] For a range of Unix timestamps
+  * [x] Generate the year/month/day hour/minute/second from the Unix timestamp
+  * [x] Generate the Unix timestamp from the calculated year/month/day hour/minute/second
+  * [x] Compare the year/month/day hour/minute/second to the JavaScript **Date** calculation
 
 <br />
 

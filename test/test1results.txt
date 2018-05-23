@@ -32,11 +32,421 @@
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
-12 0x0e946b999033257976aa5cbe0e3530618ca1582d        0.000000000000000000           0.000000000000000000 DateTime Library
+12 0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc        0.000000000000000000           0.000000000000000000 DateTime Library
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy DateTime Library
-dateTimeLibTx status=0x1 Success gas=6000000 gasUsed=266084 costETH=0.004257344 costUSD=2.87672991424 @ ETH/USD=675.71 gasPrice=16 gwei block=266 txIx=0 txId=0x553ea98682226d1b29de628ee7460305eca3934671c0b0a1cbfa522bd26b1d7c @ 1527087119 Wed, 23 May 2018 14:51:59 UTC
+dateTimeLibTx status=0x1 Success gas=6000000 gasUsed=266084 costETH=0.004257344 costUSD=2.87672991424 @ ETH/USD=675.71 gasPrice=16 gwei block=2084 txIx=0 txId=0x0eeb3a995ccb6be1c84fe07c4f0e0747b7e01a8a07d0729b57565a3248ba21e1 @ 1527088937 Wed, 23 May 2018 15:22:17 UTC
 
+---------- Test timestampToDateTime(...) and timestampFromDateTime(...) against JavaScript Date ----------
+timestampToDateTime(173)=["1970","1","1","0","2","53"]
+timestampFromDateTime(["1970","1","1","0","2","53"])=173
+jsDate(173)=1970/1/1 0:2:53
+PASS jsDate matches
+PASS timestampToDateTime(173) => timestampFromDateTime(...) matches
+
+timestampToDateTime(31581430)=["1971","1","1","12","37","10"]
+timestampFromDateTime(["1971","1","1","12","37","10"])=31581430
+jsDate(31581430)=1971/1/1 12:37:10
+PASS jsDate matches
+PASS timestampToDateTime(31581430) => timestampFromDateTime(...) matches
+
+timestampToDateTime(63141806)=["1972","1","1","19","23","26"]
+timestampFromDateTime(["1972","1","1","19","23","26"])=63141806
+jsDate(63141806)=1972/1/1 19:23:26
+PASS jsDate matches
+PASS timestampToDateTime(63141806) => timestampFromDateTime(...) matches
+
+timestampToDateTime(94743101)=["1973","1","1","13","31","41"]
+timestampFromDateTime(["1973","1","1","13","31","41"])=94743101
+jsDate(94743101)=1973/1/1 13:31:41
+PASS jsDate matches
+PASS timestampToDateTime(94743101) => timestampFromDateTime(...) matches
+
+timestampToDateTime(126279277)=["1974","1","1","13","34","37"]
+timestampFromDateTime(["1974","1","1","13","34","37"])=126279277
+jsDate(126279277)=1974/1/1 13:34:37
+PASS jsDate matches
+PASS timestampToDateTime(126279277) => timestampFromDateTime(...) matches
+
+timestampToDateTime(157863138)=["1975","1","2","2","52","18"]
+timestampFromDateTime(["1975","1","2","2","52","18"])=157863138
+jsDate(157863138)=1975/1/2 2:52:18
+PASS jsDate matches
+PASS timestampToDateTime(157863138) => timestampFromDateTime(...) matches
+
+timestampToDateTime(189440223)=["1976","1","2","14","17","3"]
+timestampFromDateTime(["1976","1","2","14","17","3"])=189440223
+jsDate(189440223)=1976/1/2 14:17:3
+PASS jsDate matches
+PASS timestampToDateTime(189440223) => timestampFromDateTime(...) matches
+
+timestampToDateTime(220997954)=["1977","1","1","20","19","14"]
+timestampFromDateTime(["1977","1","1","20","19","14"])=220997954
+jsDate(220997954)=1977/1/1 20:19:14
+PASS jsDate matches
+PASS timestampToDateTime(220997954) => timestampFromDateTime(...) matches
+
+timestampToDateTime(252534130)=["1978","1","1","20","22","10"]
+timestampFromDateTime(["1978","1","1","20","22","10"])=252534130
+jsDate(252534130)=1978/1/1 20:22:10
+PASS jsDate matches
+PASS timestampToDateTime(252534130) => timestampFromDateTime(...) matches
+
+timestampToDateTime(284117991)=["1979","1","2","9","39","51"]
+timestampFromDateTime(["1979","1","2","9","39","51"])=284117991
+jsDate(284117991)=1979/1/2 9:39:51
+PASS jsDate matches
+PASS timestampToDateTime(284117991) => timestampFromDateTime(...) matches
+
+timestampToDateTime(315695076)=["1980","1","2","21","4","36"]
+timestampFromDateTime(["1980","1","2","21","4","36"])=315695076
+jsDate(315695076)=1980/1/2 21:4:36
+PASS jsDate matches
+PASS timestampToDateTime(315695076) => timestampFromDateTime(...) matches
+
+timestampToDateTime(347252807)=["1981","1","2","3","6","47"]
+timestampFromDateTime(["1981","1","2","3","6","47"])=347252807
+jsDate(347252807)=1981/1/2 3:6:47
+PASS jsDate matches
+PASS timestampToDateTime(347252807) => timestampFromDateTime(...) matches
+
+timestampToDateTime(378788983)=["1982","1","2","3","9","43"]
+timestampFromDateTime(["1982","1","2","3","9","43"])=378788983
+jsDate(378788983)=1982/1/2 3:9:43
+PASS jsDate matches
+PASS timestampToDateTime(378788983) => timestampFromDateTime(...) matches
+
+timestampToDateTime(410372844)=["1983","1","2","16","27","24"]
+timestampFromDateTime(["1983","1","2","16","27","24"])=410372844
+jsDate(410372844)=1983/1/2 16:27:24
+PASS jsDate matches
+PASS timestampToDateTime(410372844) => timestampFromDateTime(...) matches
+
+timestampToDateTime(441949929)=["1984","1","3","3","52","9"]
+timestampFromDateTime(["1984","1","3","3","52","9"])=441949929
+jsDate(441949929)=1984/1/3 3:52:9
+PASS jsDate matches
+PASS timestampToDateTime(441949929) => timestampFromDateTime(...) matches
+
+timestampToDateTime(473507660)=["1985","1","2","9","54","20"]
+timestampFromDateTime(["1985","1","2","9","54","20"])=473507660
+jsDate(473507660)=1985/1/2 9:54:20
+PASS jsDate matches
+PASS timestampToDateTime(473507660) => timestampFromDateTime(...) matches
+
+timestampToDateTime(505043836)=["1986","1","2","9","57","16"]
+timestampFromDateTime(["1986","1","2","9","57","16"])=505043836
+jsDate(505043836)=1986/1/2 9:57:16
+PASS jsDate matches
+PASS timestampToDateTime(505043836) => timestampFromDateTime(...) matches
+
+timestampToDateTime(536627697)=["1987","1","2","23","14","57"]
+timestampFromDateTime(["1987","1","2","23","14","57"])=536627697
+jsDate(536627697)=1987/1/2 23:14:57
+PASS jsDate matches
+PASS timestampToDateTime(536627697) => timestampFromDateTime(...) matches
+
+timestampToDateTime(568204782)=["1988","1","3","10","39","42"]
+timestampFromDateTime(["1988","1","3","10","39","42"])=568204782
+jsDate(568204782)=1988/1/3 10:39:42
+PASS jsDate matches
+PASS timestampToDateTime(568204782) => timestampFromDateTime(...) matches
+
+timestampToDateTime(599762513)=["1989","1","2","16","41","53"]
+timestampFromDateTime(["1989","1","2","16","41","53"])=599762513
+jsDate(599762513)=1989/1/2 16:41:53
+PASS jsDate matches
+PASS timestampToDateTime(599762513) => timestampFromDateTime(...) matches
+
+timestampToDateTime(631298689)=["1990","1","2","16","44","49"]
+timestampFromDateTime(["1990","1","2","16","44","49"])=631298689
+jsDate(631298689)=1990/1/2 16:44:49
+PASS jsDate matches
+PASS timestampToDateTime(631298689) => timestampFromDateTime(...) matches
+
+timestampToDateTime(662882550)=["1991","1","3","6","2","30"]
+timestampFromDateTime(["1991","1","3","6","2","30"])=662882550
+jsDate(662882550)=1991/1/3 6:2:30
+PASS jsDate matches
+PASS timestampToDateTime(662882550) => timestampFromDateTime(...) matches
+
+timestampToDateTime(694459635)=["1992","1","3","17","27","15"]
+timestampFromDateTime(["1992","1","3","17","27","15"])=694459635
+jsDate(694459635)=1992/1/3 17:27:15
+PASS jsDate matches
+PASS timestampToDateTime(694459635) => timestampFromDateTime(...) matches
+
+timestampToDateTime(726017366)=["1993","1","2","23","29","26"]
+timestampFromDateTime(["1993","1","2","23","29","26"])=726017366
+jsDate(726017366)=1993/1/2 23:29:26
+PASS jsDate matches
+PASS timestampToDateTime(726017366) => timestampFromDateTime(...) matches
+
+timestampToDateTime(757553542)=["1994","1","2","23","32","22"]
+timestampFromDateTime(["1994","1","2","23","32","22"])=757553542
+jsDate(757553542)=1994/1/2 23:32:22
+PASS jsDate matches
+PASS timestampToDateTime(757553542) => timestampFromDateTime(...) matches
+
+timestampToDateTime(789137403)=["1995","1","3","12","50","3"]
+timestampFromDateTime(["1995","1","3","12","50","3"])=789137403
+jsDate(789137403)=1995/1/3 12:50:3
+PASS jsDate matches
+PASS timestampToDateTime(789137403) => timestampFromDateTime(...) matches
+
+timestampToDateTime(820714488)=["1996","1","4","0","14","48"]
+timestampFromDateTime(["1996","1","4","0","14","48"])=820714488
+jsDate(820714488)=1996/1/4 0:14:48
+PASS jsDate matches
+PASS timestampToDateTime(820714488) => timestampFromDateTime(...) matches
+
+timestampToDateTime(852272219)=["1997","1","3","6","16","59"]
+timestampFromDateTime(["1997","1","3","6","16","59"])=852272219
+jsDate(852272219)=1997/1/3 6:16:59
+PASS jsDate matches
+PASS timestampToDateTime(852272219) => timestampFromDateTime(...) matches
+
+timestampToDateTime(883808395)=["1998","1","3","6","19","55"]
+timestampFromDateTime(["1998","1","3","6","19","55"])=883808395
+jsDate(883808395)=1998/1/3 6:19:55
+PASS jsDate matches
+PASS timestampToDateTime(883808395) => timestampFromDateTime(...) matches
+
+timestampToDateTime(915392256)=["1999","1","3","19","37","36"]
+timestampFromDateTime(["1999","1","3","19","37","36"])=915392256
+jsDate(915392256)=1999/1/3 19:37:36
+PASS jsDate matches
+PASS timestampToDateTime(915392256) => timestampFromDateTime(...) matches
+
+timestampToDateTime(946969341)=["2000","1","4","7","2","21"]
+timestampFromDateTime(["2000","1","4","7","2","21"])=946969341
+jsDate(946969341)=2000/1/4 7:2:21
+PASS jsDate matches
+PASS timestampToDateTime(946969341) => timestampFromDateTime(...) matches
+
+timestampToDateTime(978527072)=["2001","1","3","13","4","32"]
+timestampFromDateTime(["2001","1","3","13","4","32"])=978527072
+jsDate(978527072)=2001/1/3 13:4:32
+PASS jsDate matches
+PASS timestampToDateTime(978527072) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1010063248)=["2002","1","3","13","7","28"]
+timestampFromDateTime(["2002","1","3","13","7","28"])=1010063248
+jsDate(1010063248)=2002/1/3 13:7:28
+PASS jsDate matches
+PASS timestampToDateTime(1010063248) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1041647109)=["2003","1","4","2","25","9"]
+timestampFromDateTime(["2003","1","4","2","25","9"])=1041647109
+jsDate(1041647109)=2003/1/4 2:25:9
+PASS jsDate matches
+PASS timestampToDateTime(1041647109) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1073224194)=["2004","1","4","13","49","54"]
+timestampFromDateTime(["2004","1","4","13","49","54"])=1073224194
+jsDate(1073224194)=2004/1/4 13:49:54
+PASS jsDate matches
+PASS timestampToDateTime(1073224194) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1104781925)=["2005","1","3","19","52","5"]
+timestampFromDateTime(["2005","1","3","19","52","5"])=1104781925
+jsDate(1104781925)=2005/1/3 19:52:5
+PASS jsDate matches
+PASS timestampToDateTime(1104781925) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1136318101)=["2006","1","3","19","55","1"]
+timestampFromDateTime(["2006","1","3","19","55","1"])=1136318101
+jsDate(1136318101)=2006/1/3 19:55:1
+PASS jsDate matches
+PASS timestampToDateTime(1136318101) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1167901962)=["2007","1","4","9","12","42"]
+timestampFromDateTime(["2007","1","4","9","12","42"])=1167901962
+jsDate(1167901962)=2007/1/4 9:12:42
+PASS jsDate matches
+PASS timestampToDateTime(1167901962) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1199479047)=["2008","1","4","20","37","27"]
+timestampFromDateTime(["2008","1","4","20","37","27"])=1199479047
+jsDate(1199479047)=2008/1/4 20:37:27
+PASS jsDate matches
+PASS timestampToDateTime(1199479047) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1231036778)=["2009","1","4","2","39","38"]
+timestampFromDateTime(["2009","1","4","2","39","38"])=1231036778
+jsDate(1231036778)=2009/1/4 2:39:38
+PASS jsDate matches
+PASS timestampToDateTime(1231036778) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1262572954)=["2010","1","4","2","42","34"]
+timestampFromDateTime(["2010","1","4","2","42","34"])=1262572954
+jsDate(1262572954)=2010/1/4 2:42:34
+PASS jsDate matches
+PASS timestampToDateTime(1262572954) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1294156815)=["2011","1","4","16","0","15"]
+timestampFromDateTime(["2011","1","4","16","0","15"])=1294156815
+jsDate(1294156815)=2011/1/4 16:0:15
+PASS jsDate matches
+PASS timestampToDateTime(1294156815) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1325733900)=["2012","1","5","3","25","0"]
+timestampFromDateTime(["2012","1","5","3","25","0"])=1325733900
+jsDate(1325733900)=2012/1/5 3:25:0
+PASS jsDate matches
+PASS timestampToDateTime(1325733900) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1357291631)=["2013","1","4","9","27","11"]
+timestampFromDateTime(["2013","1","4","9","27","11"])=1357291631
+jsDate(1357291631)=2013/1/4 9:27:11
+PASS jsDate matches
+PASS timestampToDateTime(1357291631) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1388827807)=["2014","1","4","9","30","7"]
+timestampFromDateTime(["2014","1","4","9","30","7"])=1388827807
+jsDate(1388827807)=2014/1/4 9:30:7
+PASS jsDate matches
+PASS timestampToDateTime(1388827807) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1420411668)=["2015","1","4","22","47","48"]
+timestampFromDateTime(["2015","1","4","22","47","48"])=1420411668
+jsDate(1420411668)=2015/1/4 22:47:48
+PASS jsDate matches
+PASS timestampToDateTime(1420411668) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1451988753)=["2016","1","5","10","12","33"]
+timestampFromDateTime(["2016","1","5","10","12","33"])=1451988753
+jsDate(1451988753)=2016/1/5 10:12:33
+PASS jsDate matches
+PASS timestampToDateTime(1451988753) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1483546484)=["2017","1","4","16","14","44"]
+timestampFromDateTime(["2017","1","4","16","14","44"])=1483546484
+jsDate(1483546484)=2017/1/4 16:14:44
+PASS jsDate matches
+PASS timestampToDateTime(1483546484) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1515082660)=["2018","1","4","16","17","40"]
+timestampFromDateTime(["2018","1","4","16","17","40"])=1515082660
+jsDate(1515082660)=2018/1/4 16:17:40
+PASS jsDate matches
+PASS timestampToDateTime(1515082660) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1546666521)=["2019","1","5","5","35","21"]
+timestampFromDateTime(["2019","1","5","5","35","21"])=1546666521
+jsDate(1546666521)=2019/1/5 5:35:21
+PASS jsDate matches
+PASS timestampToDateTime(1546666521) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1578243606)=["2020","1","5","17","0","6"]
+timestampFromDateTime(["2020","1","5","17","0","6"])=1578243606
+jsDate(1578243606)=2020/1/5 17:0:6
+PASS jsDate matches
+PASS timestampToDateTime(1578243606) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1609801337)=["2021","1","4","23","2","17"]
+timestampFromDateTime(["2021","1","4","23","2","17"])=1609801337
+jsDate(1609801337)=2021/1/4 23:2:17
+PASS jsDate matches
+PASS timestampToDateTime(1609801337) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1641337513)=["2022","1","4","23","5","13"]
+timestampFromDateTime(["2022","1","4","23","5","13"])=1641337513
+jsDate(1641337513)=2022/1/4 23:5:13
+PASS jsDate matches
+PASS timestampToDateTime(1641337513) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1672921374)=["2023","1","5","12","22","54"]
+timestampFromDateTime(["2023","1","5","12","22","54"])=1672921374
+jsDate(1672921374)=2023/1/5 12:22:54
+PASS jsDate matches
+PASS timestampToDateTime(1672921374) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1704498459)=["2024","1","5","23","47","39"]
+timestampFromDateTime(["2024","1","5","23","47","39"])=1704498459
+jsDate(1704498459)=2024/1/5 23:47:39
+PASS jsDate matches
+PASS timestampToDateTime(1704498459) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1736056190)=["2025","1","5","5","49","50"]
+timestampFromDateTime(["2025","1","5","5","49","50"])=1736056190
+jsDate(1736056190)=2025/1/5 5:49:50
+PASS jsDate matches
+PASS timestampToDateTime(1736056190) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1767592366)=["2026","1","5","5","52","46"]
+timestampFromDateTime(["2026","1","5","5","52","46"])=1767592366
+jsDate(1767592366)=2026/1/5 5:52:46
+PASS jsDate matches
+PASS timestampToDateTime(1767592366) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1799176227)=["2027","1","5","19","10","27"]
+timestampFromDateTime(["2027","1","5","19","10","27"])=1799176227
+jsDate(1799176227)=2027/1/5 19:10:27
+PASS jsDate matches
+PASS timestampToDateTime(1799176227) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1830753312)=["2028","1","6","6","35","12"]
+timestampFromDateTime(["2028","1","6","6","35","12"])=1830753312
+jsDate(1830753312)=2028/1/6 6:35:12
+PASS jsDate matches
+PASS timestampToDateTime(1830753312) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1862311043)=["2029","1","5","12","37","23"]
+timestampFromDateTime(["2029","1","5","12","37","23"])=1862311043
+jsDate(1862311043)=2029/1/5 12:37:23
+PASS jsDate matches
+PASS timestampToDateTime(1862311043) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1893847219)=["2030","1","5","12","40","19"]
+timestampFromDateTime(["2030","1","5","12","40","19"])=1893847219
+jsDate(1893847219)=2030/1/5 12:40:19
+PASS jsDate matches
+PASS timestampToDateTime(1893847219) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1925431080)=["2031","1","6","1","58","0"]
+timestampFromDateTime(["2031","1","6","1","58","0"])=1925431080
+jsDate(1925431080)=2031/1/6 1:58:0
+PASS jsDate matches
+PASS timestampToDateTime(1925431080) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1957008165)=["2032","1","6","13","22","45"]
+timestampFromDateTime(["2032","1","6","13","22","45"])=1957008165
+jsDate(1957008165)=2032/1/6 13:22:45
+PASS jsDate matches
+PASS timestampToDateTime(1957008165) => timestampFromDateTime(...) matches
+
+timestampToDateTime(1988565896)=["2033","1","5","19","24","56"]
+timestampFromDateTime(["2033","1","5","19","24","56"])=1988565896
+jsDate(1988565896)=2033/1/5 19:24:56
+PASS jsDate matches
+PASS timestampToDateTime(1988565896) => timestampFromDateTime(...) matches
+
+timestampToDateTime(2020102072)=["2034","1","5","19","27","52"]
+timestampFromDateTime(["2034","1","5","19","27","52"])=2020102072
+jsDate(2020102072)=2034/1/5 19:27:52
+PASS jsDate matches
+PASS timestampToDateTime(2020102072) => timestampFromDateTime(...) matches
+
+timestampToDateTime(2051685933)=["2035","1","6","8","45","33"]
+timestampFromDateTime(["2035","1","6","8","45","33"])=2051685933
+jsDate(2051685933)=2035/1/6 8:45:33
+PASS jsDate matches
+PASS timestampToDateTime(2051685933) => timestampFromDateTime(...) matches
+
+timestampToDateTime(2083263018)=["2036","1","6","20","10","18"]
+timestampFromDateTime(["2036","1","6","20","10","18"])=2083263018
+jsDate(2083263018)=2036/1/6 20:10:18
+PASS jsDate matches
+PASS timestampToDateTime(2083263018) => timestampFromDateTime(...) matches
+
+timestampToDateTime(2114820749)=["2037","1","6","2","12","29"]
+timestampFromDateTime(["2037","1","6","2","12","29"])=2114820749
+jsDate(2114820749)=2037/1/6 2:12:29
+PASS jsDate matches
+PASS timestampToDateTime(2114820749) => timestampFromDateTime(...) matches
+
+---------- PASS - no failures detected ----------
