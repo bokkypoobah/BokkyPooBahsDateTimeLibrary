@@ -10,9 +10,9 @@
 
 ## Algorithm
 
-From [Converting Between Julian Dates and Gregorian Calendar Dates](http://aa.usno.navy.mil/faq/docs/JD_Formula.php):
-
 ### Converting YYYYMMDD to Unix Timestamp
+
+From [Converting Between Julian Dates and Gregorian Calendar Dates](http://aa.usno.navy.mil/faq/docs/JD_Formula.php):
 
 ```
     INTEGER FUNCTION JD (YEAR,MONTH,DAY)
@@ -33,7 +33,7 @@ C
     END
 ```
 
-Translating this formula
+Translating this formula, and subtracting an offset so 1970/01/01 is day 0
 
 ```
 1801 <= year <= 2099
@@ -45,11 +45,14 @@ ddd = dd
     + 1461 * (yyyy + 4800 + (mm - 14) / 12) / 4
     + 367 * (mm - 2 - (mm - 14) / 12 * 12) / 12
     - 3 * ((yyyy + 4900 + (mm - 14) / 12) / 100) / 4
+    - offset
 ```
 
 <br />
 
 ### Converting Unix Timestamp To YYYYMMDD
+
+From [Converting Between Julian Dates and Gregorian Calendar Dates](http://aa.usno.navy.mil/faq/docs/JD_Formula.php):
 
 ```
     SUBROUTINE GDATE (JD, YEAR,MONTH,DAY)
@@ -78,14 +81,14 @@ C
     END
  ```
 
-Translating this formula
+Translating this formula and adding an offset so 1970/01/01 is day 0
 
 ```
 1801 <= year <= 2099
 1 <= mm <= 12
 1 <= dd <= 31
 
-int L = ddd + 68569
+int L = ddd + 68569 + offset
 int N = 4 * L / 146097
 L = L - (146097 * N + 3) / 4
 yyyy = 4000 * (L + 1) / 1461001
@@ -93,11 +96,9 @@ L = L - 1461 * yyyy / 4 + 31
 mm = 80 * L / 2447
 dd = L - 2447 * mm / 80
 L = mm / 11
-mm = mm + 2 - 12 * mm
+mm = mm + 2 - 12 * L
 yyyy = 100 * (N - 49) + yyyy + L
 ```
-## References
-
 
 <br />
 
