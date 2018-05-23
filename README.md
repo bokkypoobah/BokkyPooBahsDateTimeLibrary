@@ -36,7 +36,15 @@ C
 Translating this formula
 
 ```
-    days = dd - 32075 + 1461*(yyyy+4800+(mm-14)/12)/4+367*(mm-2-(mm-14)/12*12)/12-3*((yyyy+4900+(mm-14)/12)/100)/4
+1801 <= year <= 2099
+1 <= mm <= 12
+1 <= dd <= 31
+
+ddd = dd
+    - 32075
+    + 1461 * (yyyy + 4800 + (mm - 14) / 12) / 4
+    + 367 * (mm - 2 - (mm - 14) / 12 * 12) / 12
+    - 3 * ((yyyy + 4900 + (mm - 14) / 12) / 100) / 4
 ```
 
 <br />
@@ -70,6 +78,24 @@ C
     END
  ```
 
+Translating this formula
+
+```
+1801 <= year <= 2099
+1 <= mm <= 12
+1 <= dd <= 31
+
+int L = ddd + 68569
+int N = 4 * L / 146097
+L = L - (146097 * N + 3) / 4
+yyyy = 4000 * (L + 1) / 1461001
+L = L - 1461 * yyyy / 4 + 31
+mm = 80 * L / 2447
+dd = L - 2447 * mm / 80
+L = mm / 11
+mm = mm + 2 - 12 * mm
+yyyy = 100 * (N - 49) + yyyy + L
+```
 ## References
 
 
