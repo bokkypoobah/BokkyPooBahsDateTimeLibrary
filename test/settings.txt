@@ -5,8 +5,10 @@ SOURCEDIR=../contracts
 
 DATETIMELIBSOL=BokkyPooBahsDateTimeLibrary.sol
 DATETIMELIBJS=BokkyPooBahsDateTimeLibrary.js
+TESTDATETIMESOL=TestDateTime.sol
+TESTDATETIMEJS=TestDateTime.js
 
-DEPLOYMENTDATA=deploymentData.txt
+DEPLOYMENTDATA=deploymentData.js
 
 TEST1OUTPUT=test1output.txt
 TEST1RESULTS=test1results.txt

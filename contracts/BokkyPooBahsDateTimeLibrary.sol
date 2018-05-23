@@ -10,7 +10,8 @@ pragma solidity ^0.4.23;
 // And adding an offset of 2440588 so that 1970/01/01 is day 0. Then
 // multiplying by seconds in a day to handle the Unix timestamp format
 //
-// Date range 1970/01/01 to 2099/12/31 (but tested to year 2038)
+// Tested date range 1970/01/01 to 2222/12/31
+//
 // 1970 <= year  <= 2099
 //    1 <= month <= 12
 //    1 <= day   <= 31
@@ -21,9 +22,10 @@ pragma solidity ^0.4.23;
 // https://www.gnu.org/licenses/lgpl-3.0.en.html
 // ----------------------------------------------------------------------------
 
-contract BokkyPooBahsDateTimeLibrary {
+library BokkyPooBahsDateTimeLibrary {
 
     uint public constant SECONDS_PER_DAY = 24 * 60 * 60;
+    int public constant OFFSET19700101 = 2440588;
 
     function timestampFromDate(uint year, uint month, uint day) public pure returns (uint timestamp) {
         return daysFromDate(year, month, day) * SECONDS_PER_DAY;
@@ -64,7 +66,7 @@ contract BokkyPooBahsDateTimeLibrary {
           + 1461 * (_year + 4800 + (_month - 14) / 12) / 4
           + 367 * (_month - 2 - (_month - 14) / 12 * 12) / 12
           - 3 * ((_year + 4900 + (_month - 14) / 12) / 100) / 4
-          - 2440588;
+          - OFFSET19700101;
 
         _days = uint(__days);
     }
@@ -84,7 +86,7 @@ contract BokkyPooBahsDateTimeLibrary {
     function daysToDate(uint _days) internal pure returns (uint year, uint month, uint day) {
         int __days = int(_days);
 
-        int L = __days + 68569 + 2440588;
+        int L = __days + 68569 + OFFSET19700101;
         int N = 4 * L / 146097;
         L = L - (146097 * N + 3) / 4;
         int _year = 4000 * (L + 1) / 1461001;

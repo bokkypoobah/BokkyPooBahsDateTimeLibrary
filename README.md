@@ -2,11 +2,9 @@
 
 **Status: Work in progress**
 
-A low gas cost date & time calculation Solidity library.
+A gas-efficient Solidity date and time library.
 
-Instead of using loops and lookup tables, the date conversions in this library uses formulae to convert year/month/day hour:minute:second to a Unix timestamp, and back.
-
-NOTE that this library is currenly a Solidity contract, but will be converted into a library when the development is nearing completion.
+Instead of using loops and lookup tables, the date conversions in this library uses formulae to convert year/month/day hour:minute:second to a Unix timestamp and back.
 
 <br />
 
@@ -14,8 +12,44 @@ NOTE that this library is currenly a Solidity contract, but will be converted in
 
 ## Table Of Contents
 
+* [Gas Cost](#gas-cost)
 * [Algorithm](#algorithm)
 * [Testing](#testing)
+
+
+<br />
+
+<hr />
+
+## Gas Cost
+
+### `timestampToDateTime(...)` Gas Cost
+
+From executing the following function, the transaction gas cost is 24,693
+
+```javascript
+> testDateTime.timestampToDateTime(1527120000)
+[2018, 5, 24, 0, 0, 0]
+> testDateTime.timestampToDateTime.estimateGas(1527120000)
+24693
+```
+
+From Remix, the execution gas cost is 3,101.
+
+<br />
+
+### `timestampFromDateTime(...)` Gas Cost
+
+From executing the following function, the transaction gas cost is 25,054
+
+```javascript
+> testDateTime.timestampFromDateTime(2018, 05, 24, 1, 2, 3)
+1527123723
+> testDateTime.timestampFromDateTime.estimateGas(2018, 05, 24, 1, 2, 3)
+25054
+```
+
+From Remix, the execution gas cost is 2,566
 
 <br />
 
@@ -52,7 +86,7 @@ C
     END
 ```
 
-Translating this formula, and subtracting an offset so 1970/01/01 is day 0:
+Translating this formula, and subtracting an offset (2,440,588) so 1970/01/01 is day 0:
 
 ```
 days = day
@@ -96,7 +130,7 @@ C
     END
  ```
 
-Translating this formula and adding an offset so 1970/01/01 is day 0:
+Translating this formula and adding an offset (2,440,588) so 1970/01/01 is day 0:
 
 ```
 int L = days + 68569 + offset
@@ -119,6 +153,8 @@ year = 100 * (N - 49) + year + L
 
 Details of the testing environment can be found in [test](test).
 
+The DateTime library calculations have been tested for the date range 1970/01/01 to 2345/12/01 for periodically sampled dates.
+
 The following functions were tested using the script [test/01_test1.sh](test/01_test1.sh) with the summary results saved
 in [test/test1results.txt](test/test1results.txt) and the detailed output saved in [test/test1output.txt](test/test1output.txt):
 
@@ -126,7 +162,7 @@ in [test/test1results.txt](test/test1results.txt) and the detailed output saved 
 * [x] For a range of Unix timestamps
   * [x] Generate the year/month/day hour/minute/second from the Unix timestamp
   * [x] Generate the Unix timestamp from the calculated year/month/day hour/minute/second
-  * [x] Compare the year/month/day hour/minute/second to the JavaScript **Date** calculation
+  * [x] Compare the year/month/day hour/minute/second to the JavaScript *Date* calculation
 
 <br />
 
