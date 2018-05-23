@@ -30,15 +30,12 @@ library BokkyPooBahsDateTimeLibrary {
     function timestampFromDate(uint year, uint month, uint day) public pure returns (uint timestamp) {
         return daysFromDate(year, month, day) * SECONDS_PER_DAY;
     }
-
     function timestampFromDateTime(uint year, uint month, uint day, uint hour, uint minute, uint second) public pure returns (uint timestamp) {
         return daysFromDate(year, month, day) * SECONDS_PER_DAY + hour * 60 * 60 + minute * 60 + second;
     }
-
     function timestampToDate(uint timestamp) public pure returns (uint year, uint month, uint day) {
         (year, month, day) = daysToDate(timestamp / SECONDS_PER_DAY);
     }
-
     function timestampToDateTime(uint timestamp) public pure returns (uint year, uint month, uint day, uint hour, uint minute, uint second) {
         (year, month, day) = daysToDate(timestamp / SECONDS_PER_DAY);
         uint secs = timestamp % SECONDS_PER_DAY;
@@ -46,6 +43,35 @@ library BokkyPooBahsDateTimeLibrary {
         secs = secs % (60 * 60);
         minute = secs / 60;
         second = secs % 60;
+    }
+
+    function diffDays(uint fromTimestamp, uint toTimestamp) public pure returns (uint _days) {
+        require(fromTimestamp <= toTimestamp);
+        _days = (toTimestamp - fromTimestamp) / SECONDS_PER_DAY;
+    }
+    function diffMonths(uint fromTimestamp, uint toTimestamp) public pure returns (uint _months) {
+        require(fromTimestamp <= toTimestamp);
+        uint fromYear;
+        uint fromMonth;
+        uint fromDay;
+        uint toYear;
+        uint toMonth;
+        uint toDay;
+        (fromYear, fromMonth, fromDay) = daysToDate(fromTimestamp / SECONDS_PER_DAY);
+        (toYear, toMonth, toDay) = daysToDate(toTimestamp / SECONDS_PER_DAY);
+        _months = toYear * 12 + toMonth - fromYear * 12 - fromMonth;
+    }
+    function diffYears(uint fromTimestamp, uint toTimestamp) public pure returns (uint _years) {
+        require(fromTimestamp <= toTimestamp);
+        uint fromYear;
+        uint fromMonth;
+        uint fromDay;
+        uint toYear;
+        uint toMonth;
+        uint toDay;
+        (fromYear, fromMonth, fromDay) = daysToDate(fromTimestamp / SECONDS_PER_DAY);
+        (toYear, toMonth, toDay) = daysToDate(toTimestamp / SECONDS_PER_DAY);
+        _years = toYear - fromYear;
     }
 
     // ------------------------------------------------------------------------

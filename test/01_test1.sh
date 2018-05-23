@@ -152,6 +152,41 @@ printTxData("testDateTimeAddress=" + testDateTimeAddress, testDateTimeTx);
 console.log("RESULT: ");
 
 
+console.log("RESULT: ---------- Test diff{Days|Months|Years} ----------");
+var fromTimestamp = testDateTime.timestampFromDateTime(2017, 10, 21, 1, 2, 3);
+var toTimestamp = testDateTime.timestampFromDateTime(2019, 7, 18, 4, 5, 6);
+
+var diffDays = testDateTime.diffDays(fromTimestamp, toTimestamp);
+console.log("RESULT: diffDays(" + testDateTime.timestampToDateTime(fromTimestamp) + ", " +
+  testDateTime.timestampToDateTime(toTimestamp) + ") = " + diffDays);
+if (diffDays == 635) {
+  console.log("RESULT: PASS diffDays");
+} else {
+  console.log("RESULT: FAIL diffDays");
+}
+console.log("RESULT: ");
+
+var diffMonths = testDateTime.diffMonths(fromTimestamp, toTimestamp);
+console.log("RESULT: diffMonths(" + testDateTime.timestampToDateTime(fromTimestamp) + ", " +
+  testDateTime.timestampToDateTime(toTimestamp) + ") = " + diffMonths);
+if (diffMonths == 21) {
+  console.log("RESULT: PASS diffMonths");
+} else {
+  console.log("RESULT: FAIL diffMonths");
+}
+console.log("RESULT: ");
+
+var diffYears = testDateTime.diffYears(fromTimestamp, toTimestamp);
+console.log("RESULT: diffYears(" + testDateTime.timestampToDateTime(fromTimestamp) + ", " +
+  testDateTime.timestampToDateTime(toTimestamp) + ") = " + diffYears);
+if (diffYears == 2) {
+  console.log("RESULT: PASS diffYears");
+} else {
+  console.log("RESULT: FAIL diffYears");
+}
+console.log("RESULT: ");
+
+
 var runFullTest = true;
 if (runFullTest) {
 console.log("RESULT: ---------- Test timestampToDateTime(...) and timestampFromDateTime(...) against JavaScript Date ----------");
