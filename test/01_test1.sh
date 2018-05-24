@@ -5,7 +5,7 @@
 # Enjoy. (c) BokkyPooBah / Bok Consulting Pty Ltd 2017. The MIT Licence.
 # ----------------------------------------------------------------------------------------------
 
-MODE=${1:-test}
+MODE=${1:-full}
 
 GETHATTACHPOINT=`grep ^IPCFILE= settings.txt | sed "s/^.*=//"`
 PASSWORD=`grep ^PASSWORD= settings.txt | sed "s/^.*=//"`
@@ -187,8 +187,7 @@ if (diffYears == 2) {
 console.log("RESULT: ");
 
 
-var runFullTest = true;
-if (runFullTest) {
+if ("$MODE" == "full") {
 console.log("RESULT: ---------- Test timestampToDateTime(...) and timestampFromDateTime(...) against JavaScript Date ----------");
 var now = new Date()/1000;
 
