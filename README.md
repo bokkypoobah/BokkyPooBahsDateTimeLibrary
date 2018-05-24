@@ -1,10 +1,8 @@
 # BokkyPooBah's DateTime Library
 
-**Status: Work in progress**
-
 A gas-efficient Solidity date and time library.
 
-Instead of using loops and lookup tables, the date conversions in this library uses formulae to convert year/month/day hour:minute:second to a Unix timestamp and back.
+Instead of using loops and lookup tables, this date conversions library uses formulae to convert year/month/day hour:minute:second to a Unix timestamp and back.
 
 <br />
 
@@ -12,8 +10,40 @@ Instead of using loops and lookup tables, the date conversions in this library u
 
 ## Table Of Contents
 
-* [TODO](#todo)
 * [Conventions](#conventions)
+* [Functions](#functions)
+  * [daysFromDate](#daysfromdate)
+  * [daysToDate](#daystodate)
+  * [timestampFromDate](#)
+  * [timestampFromDateTime](#)
+  * [timestampToDate](#)
+  * [timestampToDateTime](#)
+  * [isLeapYear](#)
+  * [isWeekDay](#)
+  * [isWeekEnd](#)
+  * [getDaysInMonth](#)
+  * [getDayOfWeek](#)
+  * [getYear](#)
+  * [getMonth](#)
+  * [getDay](#)
+  * [getHour](#)
+  * [getMinute](#)
+  * [getSecond](#)
+  * [addYears](#)
+  * [addMonths](#)
+  * [addDays](#)
+  * [addHours](#)
+  * [addMinutes](#)
+  * [addSeconds](#)
+  * [subYears](#)
+  * [subMonths](#)
+  * [subDays](#)
+  * [subHours](#)
+  * [subMinutes](#)
+  * [subSeconds](#)
+  * [diffDays](#)
+  * [diffMonths](#)
+  * [diffYears](#)
 * [Gas Cost](#gas-cost)
 * [Algorithm](#algorithm)
 * [Testing](#testing)
@@ -22,18 +52,10 @@ Instead of using loops and lookup tables, the date conversions in this library u
 
 <hr />
 
-## TODO
-
-* Document
-
-<br />
-
-<hr />
-
 ## Conventions
 
 Unit      | Range         | Notes
-:-------- |:-------------:|:-----
+:-------- |:-------------:|:---------------------------------------------------------------
 timestamp | >= 0          | Unix timestamp, number of seconds since 1970/01/01 00:00:00 UTC
 year      | 1970 ... 2345 |
 month     | 1 ... 12      |
@@ -43,6 +65,265 @@ minute    | 0 ... 59      |
 second    | 0 ... 59      |
 dayOfWeek | 1 ... 7       | 1 = Monday, ..., 7 = Sunday
 
+<br />
+
+<hr />
+
+## Functions
+
+### daysFromDate
+
+```javascript
+function daysFromDate(uint year, uint month, uint day) public pure returns (uint _days)
+```
+
+<br />
+
+### daysToDate
+
+```javascript
+function daysToDate(uint _days) public pure returns (uint year, uint month, uint day)
+```
+
+<br />
+
+### timestampFromDate
+
+```javascript
+function timestampFromDate(uint year, uint month, uint day) public pure returns (uint timestamp)
+```
+
+<br />
+
+### timestampFromDateTime
+
+```javascript
+function timestampFromDateTime(uint year, uint month, uint day, uint hour, uint minute, uint second) public pure returns (uint timestamp)
+```
+
+<br />
+
+### timestampToDate
+
+```javascript
+function timestampToDate(uint timestamp) public pure returns (uint year, uint month, uint day)
+```
+
+<br />
+
+### timestampToDateTime
+
+```javascript
+function timestampToDateTime(uint timestamp) public pure returns (uint year, uint month, uint day, uint hour, uint minute, uint second)
+```
+
+<br />
+
+### isLeapYear
+
+```javascript
+function isLeapYear(uint year) public pure returns (bool leapYear)
+```
+
+<br />
+
+### isWeekDay
+
+```javascript
+function isWeekDay(uint timestamp) public pure returns (bool weekDay)
+```
+
+<br />
+
+### isWeekEnd
+
+```javascript
+function isWeekEnd(uint timestamp) public pure returns (bool weekEnd)
+```
+
+<br />
+
+### getDaysInMonth
+
+```javascript
+function getDaysInMonth(uint year, uint month) public pure returns (uint dim)
+```
+
+<br />
+
+### getDayOfWeek
+
+```javascript
+function getDayOfWeek(uint timestamp) public pure returns (uint dow)
+```
+
+<br />
+
+### getYear
+
+```javascript
+function getYear(uint timestamp) public pure returns (uint year)
+```
+
+<br />
+
+### getMonth
+
+```javascript
+function getMonth(uint timestamp) public pure returns (uint month)
+```
+
+<br />
+
+### getDay
+
+```javascript
+function getDay(uint timestamp) public pure returns (uint day)
+```
+
+<br />
+
+### getHour
+
+```javascript
+function getHour(uint timestamp) public pure returns (uint hour)
+```
+
+<br />
+
+### getMinute
+
+```javascript
+function getMinute(uint timestamp) public pure returns (uint minute)
+```
+
+<br />
+
+### getSecond
+
+```javascript
+function getSecond(uint timestamp) public pure returns (uint second)
+```
+
+<br />
+
+### addYears
+
+```javascript
+function addYears(uint timestamp, uint _years) public pure returns (uint newTimestamp)
+```
+
+<br />
+
+### addMonths
+
+```javascript
+function addMonths(uint timestamp, uint _months) public pure returns (uint newTimestamp)
+```
+
+<br />
+
+### addDays
+
+```javascript
+function addDays(uint timestamp, uint _days) public pure returns (uint newTimestamp)
+```
+
+<br />
+
+### addHours
+
+```javascript
+function addHours(uint timestamp, uint _hours) public pure returns (uint newTimestamp)
+```
+
+<br />
+
+### addMinutes
+
+```javascript
+function addMinutes(uint timestamp, uint _minutes) public pure returns (uint newTimestamp)
+```
+
+<br />
+
+### addSeconds
+
+```javascript
+function addSeconds(uint timestamp, uint _seconds) public pure returns (uint newTimestamp)
+```
+
+<br />
+
+### subYears
+
+```javascript
+function subYears(uint timestamp, uint _years) public pure returns (uint newTimestamp)
+```
+
+<br />
+
+### subMonths
+
+```javascript
+function subMonths(uint timestamp, uint _months) public pure returns (uint newTimestamp)
+```
+
+<br />
+
+### subDays
+
+```javascript
+function subDays(uint timestamp, uint _days) public pure returns (uint newTimestamp)
+```
+
+<br />
+
+### subHours
+
+```javascript
+function subHours(uint timestamp, uint _hours) public pure returns (uint newTimestamp)
+```
+
+<br />
+
+### subMinutes
+
+```javascript
+function subMinutes(uint timestamp, uint _minutes) public pure returns (uint newTimestamp)
+```
+
+<br />
+
+### subSeconds
+
+```javascript
+function subSeconds(uint timestamp, uint _seconds) public pure returns (uint newTimestamp)
+```
+
+<br />
+
+### diffDays
+
+```javascript
+function diffDays(uint fromTimestamp, uint toTimestamp) public pure returns (uint _days)
+```
+
+<br />
+
+### diffMonths
+
+```javascript
+function diffMonths(uint fromTimestamp, uint toTimestamp) public pure returns (uint _months)
+```
+
+<br />
+
+### diffYears
+
+```javascript
+function diffYears(uint fromTimestamp, uint toTimestamp) public pure returns (uint _years)
+```
 
 <br />
 
