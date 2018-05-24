@@ -12,10 +12,19 @@ Instead of using loops and lookup tables, the date conversions in this library u
 
 ## Table Of Contents
 
+* [TODO](#todo)
 * [Conventions](#conventions)
 * [Gas Cost](#gas-cost)
 * [Algorithm](#algorithm)
 * [Testing](#testing)
+
+<br />
+
+<hr />
+
+## TODO
+
+* Document
 
 <br />
 

@@ -48,10 +48,10 @@ library BokkyPooBahsDateTimeLibrary {
     uint public constant DOW_SUN = 7;
 
     function timestampFromDate(uint year, uint month, uint day) public pure returns (uint timestamp) {
-        return daysFromDate(year, month, day) * SECONDS_PER_DAY;
+        timestamp = daysFromDate(year, month, day) * SECONDS_PER_DAY;
     }
     function timestampFromDateTime(uint year, uint month, uint day, uint hour, uint minute, uint second) public pure returns (uint timestamp) {
-        return daysFromDate(year, month, day) * SECONDS_PER_DAY + hour * SECONDS_PER_HOUR + minute * SECONDS_PER_MINUTE + second;
+        timestamp = daysFromDate(year, month, day) * SECONDS_PER_DAY + hour * SECONDS_PER_HOUR + minute * SECONDS_PER_MINUTE + second;
     }
     function timestampToDate(uint timestamp) public pure returns (uint year, uint month, uint day) {
         (year, month, day) = daysToDate(timestamp / SECONDS_PER_DAY);
@@ -128,6 +128,7 @@ library BokkyPooBahsDateTimeLibrary {
             day = daysInMonth;
         }
         newTimestamp = daysFromDate(year, month, day) * SECONDS_PER_DAY + timestamp % SECONDS_PER_DAY;
+        require(newTimestamp >= timestamp);
     }
     function addMonths(uint timestamp, uint _months) public pure returns (uint newTimestamp) {
         uint year;
@@ -142,6 +143,7 @@ library BokkyPooBahsDateTimeLibrary {
             day = daysInMonth;
         }
         newTimestamp = daysFromDate(year, month, day) * SECONDS_PER_DAY + timestamp % SECONDS_PER_DAY;
+        require(newTimestamp >= timestamp);
     }
     function addDays(uint timestamp, uint _days) public pure returns (uint newTimestamp) {
         newTimestamp = timestamp + _days * SECONDS_PER_DAY;
@@ -159,34 +161,34 @@ library BokkyPooBahsDateTimeLibrary {
         newTimestamp = timestamp + _seconds;
         require(newTimestamp >= timestamp);
     }
+
     function subYears(uint timestamp, uint _years) public pure returns (uint newTimestamp) {
         uint year;
         uint month;
         uint day;
         (year, month, day) = daysToDate(timestamp / SECONDS_PER_DAY);
         year -= _years;
-        // BK TODO - Checks
         uint daysInMonth = getDaysInMonth(year, month);
         if (day > daysInMonth) {
             day = daysInMonth;
         }
         newTimestamp = daysFromDate(year, month, day) * SECONDS_PER_DAY + timestamp % SECONDS_PER_DAY;
+        require(newTimestamp <= timestamp);
     }
-    // BK TODO
     function subMonths(uint timestamp, uint _months) public pure returns (uint newTimestamp) {
         uint year;
         uint month;
         uint day;
         (year, month, day) = daysToDate(timestamp / SECONDS_PER_DAY);
-        month += _months;
-        year += (month - 1) / 12;
-        month = (month - 1) % 12 + 1;
+        uint yearMonth = year * 12 + (month - 1) - _months;
+        year = yearMonth / 12;
+        month = yearMonth % 12 + 1;
         uint daysInMonth = getDaysInMonth(year, month);
         if (day > daysInMonth) {
             day = daysInMonth;
         }
-        require(newTimestamp <= timestamp);
         newTimestamp = daysFromDate(year, month, day) * SECONDS_PER_DAY + timestamp % SECONDS_PER_DAY;
+        require(newTimestamp <= timestamp);
     }
     function subDays(uint timestamp, uint _days) public pure returns (uint newTimestamp) {
         newTimestamp = timestamp - _days * SECONDS_PER_DAY;

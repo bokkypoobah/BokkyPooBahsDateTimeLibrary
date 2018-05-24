@@ -133,6 +133,25 @@ function printTxData(name, txId) {
     " @ " + block.timestamp + " " + new Date(block.timestamp * 1000).toUTCString());
 }
 
+function assert(condition, message) {
+  if (condition) {
+    console.log("RESULT: PASS " + message);
+  } else {
+    console.log("RESULT: FAIL " + message);
+  }
+  return condition;
+}
+
+function assertIntEquals(result, expected, message) {
+  if (parseInt(result) == parseInt(expected)) {
+    console.log("RESULT: PASS " + message);
+    return true;
+  } else {
+    console.log("RESULT: FAIL " + message);
+    return false;
+  }
+}
+
 function assertEtherBalance(account, expectedBalance) {
   var etherBalance = web3.fromWei(eth.getBalance(account), "ether");
   if (etherBalance == expectedBalance) {
