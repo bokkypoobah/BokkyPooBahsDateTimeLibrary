@@ -157,14 +157,14 @@ var newTimestamp;
 var expectedTimestamp;
 
 if ("$MODE" == "full") {
-  console.log("RESULT: ---------- Test isLeapYear ----------");
-  if (!assert(testDateTime.isLeapYear(2000), "2000 is a leap year")) {
+  console.log("RESULT: ---------- Test _isLeapYear ----------");
+  if (!assert(testDateTime._isLeapYear(2000), "2000 is a leap year")) {
     failureDetected = true;
   }
-  if (!assert(!testDateTime.isLeapYear(2100), "2100 is a not leap year")) {
+  if (!assert(!testDateTime._isLeapYear(2100), "2100 is a not leap year")) {
     failureDetected = true;
   }
-  if (!assert(testDateTime.isLeapYear(2104), "2104 is a leap year")) {
+  if (!assert(testDateTime._isLeapYear(2104), "2104 is a leap year")) {
     failureDetected = true;
   }
   console.log("RESULT: ");
@@ -210,44 +210,44 @@ if ("$MODE" == "full") {
 
 
 if ("$MODE" == "full") {
-  console.log("RESULT: ---------- Test getDaysInMonth ----------");
-  if (!assert(testDateTime.getDaysInMonth(2000, 1) == 31, "2000/01 has 31 days")) {
+  console.log("RESULT: ---------- Test _getDaysInMonth ----------");
+  if (!assert(testDateTime._getDaysInMonth(2000, 1) == 31, "2000/01 has 31 days")) {
     failureDetected = true;
   }
-  if (!assert(testDateTime.getDaysInMonth(2000, 2) == 29, "2000/02 has 29 days")) {
+  if (!assert(testDateTime._getDaysInMonth(2000, 2) == 29, "2000/02 has 29 days")) {
     failureDetected = true;
   }
-  if (!assert(testDateTime.getDaysInMonth(2001, 2) == 28, "2001/02 has 28 days")) {
+  if (!assert(testDateTime._getDaysInMonth(2001, 2) == 28, "2001/02 has 28 days")) {
     failureDetected = true;
   }
-  if (!assert(testDateTime.getDaysInMonth(2000, 3) == 31, "2000/03 has 31 days")) {
+  if (!assert(testDateTime._getDaysInMonth(2000, 3) == 31, "2000/03 has 31 days")) {
     failureDetected = true;
   }
-  if (!assert(testDateTime.getDaysInMonth(2000, 4) == 30, "2000/04 has 30 days")) {
+  if (!assert(testDateTime._getDaysInMonth(2000, 4) == 30, "2000/04 has 30 days")) {
     failureDetected = true;
   }
-  if (!assert(testDateTime.getDaysInMonth(2000, 5) == 31, "2000/05 has 31 days")) {
+  if (!assert(testDateTime._getDaysInMonth(2000, 5) == 31, "2000/05 has 31 days")) {
     failureDetected = true;
   }
-  if (!assert(testDateTime.getDaysInMonth(2000, 6) == 30, "2000/06 has 30 days")) {
+  if (!assert(testDateTime._getDaysInMonth(2000, 6) == 30, "2000/06 has 30 days")) {
     failureDetected = true;
   }
-  if (!assert(testDateTime.getDaysInMonth(2000, 7) == 31, "2000/07 has 31 days")) {
+  if (!assert(testDateTime._getDaysInMonth(2000, 7) == 31, "2000/07 has 31 days")) {
     failureDetected = true;
   }
-  if (!assert(testDateTime.getDaysInMonth(2000, 8) == 31, "2000/08 has 31 days")) {
+  if (!assert(testDateTime._getDaysInMonth(2000, 8) == 31, "2000/08 has 31 days")) {
     failureDetected = true;
   }
-  if (!assert(testDateTime.getDaysInMonth(2000, 9) == 30, "2000/09 has 30 days")) {
+  if (!assert(testDateTime._getDaysInMonth(2000, 9) == 30, "2000/09 has 30 days")) {
     failureDetected = true;
   }
-  if (!assert(testDateTime.getDaysInMonth(2000, 10) == 31, "2000/10 has 31 days")) {
+  if (!assert(testDateTime._getDaysInMonth(2000, 10) == 31, "2000/10 has 31 days")) {
     failureDetected = true;
   }
-  if (!assert(testDateTime.getDaysInMonth(2000, 11) == 30, "2000/11 has 30 days")) {
+  if (!assert(testDateTime._getDaysInMonth(2000, 11) == 30, "2000/11 has 30 days")) {
     failureDetected = true;
   }
-  if (!assert(testDateTime.getDaysInMonth(2000, 12) == 31, "2000/12 has 31 days")) {
+  if (!assert(testDateTime._getDaysInMonth(2000, 12) == 31, "2000/12 has 31 days")) {
     failureDetected = true;
   }
   console.log("RESULT: ");

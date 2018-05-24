@@ -20,8 +20,8 @@
 ----- Deploy DateTime Library -----
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.012444240000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.012444240000000000           0.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.012659808000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.012659808000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Alice
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Bob
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Carol
@@ -32,19 +32,19 @@
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
-12 0x2d4c4cffa8fdca0d4e2a5c80047d14d98b3fa515        0.000000000000000000           0.000000000000000000 DateTime Library
+12 0xdf9f36fd5654d92e0844c78d2d2dd562404cd1ff        0.000000000000000000           0.000000000000000000 DateTime Library
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy DateTime Library
-dateTimeLibTx status=0x1 Success gas=6000000 gasUsed=777765 costETH=0.01244424 costUSD=8.4086974104 @ ETH/USD=675.71 gasPrice=16 gwei block=57532 txIx=0 txId=0xba0605fa3cfb03d3438bdf924c8c6645dcf42960d9c64cb8202b291aa1064a1d @ 1527171785 Thu, 24 May 2018 14:23:05 UTC
+dateTimeLibTx status=0x1 Success gas=6000000 gasUsed=791238 costETH=0.012659808 costUSD=8.55435886368 @ ETH/USD=675.71 gasPrice=16 gwei block=19830 txIx=0 txId=0x1303d3350002f15f562bcbb479345627d1e6da151185d34101feeae8db339082 @ 1527219408 Fri, 25 May 2018 03:36:48 UTC
 
 ---------- Deploy TestDateTime Contract ----------
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.033104144000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.033104144000000000           0.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.033319712000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.033319712000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Alice
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Bob
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Carol
@@ -55,16 +55,16 @@ dateTimeLibTx status=0x1 Success gas=6000000 gasUsed=777765 costETH=0.01244424 c
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
-12 0x2d4c4cffa8fdca0d4e2a5c80047d14d98b3fa515        0.000000000000000000           0.000000000000000000 DateTime Library
-13 0xbb4da2fcbb8e17d73df81ee33d33f11a3ebe91f9        0.000000000000000000           0.000000000000000000 TestDateTime
+12 0xdf9f36fd5654d92e0844c78d2d2dd562404cd1ff        0.000000000000000000           0.000000000000000000 DateTime Library
+13 0xe6ada9beed6e24be4c0259383db61b52bfca85f3        0.000000000000000000           0.000000000000000000 TestDateTime
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy TestDateTime Contract
-testDateTimeAddress=0xbb4da2fcbb8e17d73df81ee33d33f11a3ebe91f9 status=0x1 Success gas=6000000 gasUsed=1291244 costETH=0.020659904 costUSD=13.96010373184 @ ETH/USD=675.71 gasPrice=16 gwei block=57534 txIx=0 txId=0x7461d07a77d69dae092a5ccc6db889018cec44d9cbf3165de0140c09ea66e04b @ 1527171787 Thu, 24 May 2018 14:23:07 UTC
+testDateTimeAddress=0xe6ada9beed6e24be4c0259383db61b52bfca85f3 status=0x1 Success gas=6000000 gasUsed=1291244 costETH=0.020659904 costUSD=13.96010373184 @ ETH/USD=675.71 gasPrice=16 gwei block=19832 txIx=0 txId=0x78f93a820891e551e5ca9d082df2535a516423b23919f0e1c3d20f48e336eaf9 @ 1527219410 Fri, 25 May 2018 03:36:50 UTC
 
----------- Test isLeapYear ----------
+---------- Test _isLeapYear ----------
 PASS 2000 is a leap year
 PASS 2100 is a not leap year
 PASS 2104 is a leap year
@@ -80,7 +80,7 @@ PASS 2018,5,25,1,2,3 is a not a week end
 PASS 2018,5,26,1,2,3 is a week end
 PASS 2018,5,27,1,2,3 is a week end
 
----------- Test getDaysInMonth ----------
+---------- Test _getDaysInMonth ----------
 PASS 2000/01 has 31 days
 PASS 2000/02 has 29 days
 PASS 2001/02 has 28 days

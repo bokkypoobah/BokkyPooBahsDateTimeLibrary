@@ -1,5 +1,7 @@
 # BokkyPooBah's DateTime Library
 
+**Status: Work in progress**
+
 A gas-efficient Solidity date and time library.
 
 Instead of using loops and lookup tables, this date conversions library uses formulae to convert year/month/day hour:minute:second to a Unix timestamp and back.
@@ -10,40 +12,41 @@ Instead of using loops and lookup tables, this date conversions library uses for
 
 ## Table Of Contents
 
+* [History](#history)
 * [Conventions](#conventions)
 * [Functions](#functions)
-  * [daysFromDate](#daysfromdate)
-  * [daysToDate](#daystodate)
-  * [timestampFromDate](#)
-  * [timestampFromDateTime](#)
-  * [timestampToDate](#)
-  * [timestampToDateTime](#)
-  * [isLeapYear](#)
-  * [isWeekDay](#)
-  * [isWeekEnd](#)
-  * [getDaysInMonth](#)
-  * [getDayOfWeek](#)
-  * [getYear](#)
-  * [getMonth](#)
-  * [getDay](#)
-  * [getHour](#)
-  * [getMinute](#)
-  * [getSecond](#)
-  * [addYears](#)
-  * [addMonths](#)
-  * [addDays](#)
-  * [addHours](#)
-  * [addMinutes](#)
-  * [addSeconds](#)
-  * [subYears](#)
-  * [subMonths](#)
-  * [subDays](#)
-  * [subHours](#)
-  * [subMinutes](#)
-  * [subSeconds](#)
-  * [diffDays](#)
-  * [diffMonths](#)
-  * [diffYears](#)
+  * [_daysFromDate](#_daysfromdate)
+  * [_daysToDate](#_daystodate)
+  * [timestampFromDate](#timestampfromdate)
+  * [timestampFromDateTime](#timestampfromdatetime)
+  * [timestampToDate](#timestamptodate)
+  * [timestampToDateTime](#timestamptodatetime)
+  * [_isLeapYear](#_isleapyear)
+  * [isWeekDay](#isweekday)
+  * [isWeekEnd](#isweekend)
+  * [_getDaysInMonth](#_getdaysinmonth)
+  * [getDayOfWeek](#getdayofweek)
+  * [getYear](#getyear)
+  * [getMonth](#getmonth)
+  * [getDay](#getday)
+  * [getHour](#gethour)
+  * [getMinute](#getminute)
+  * [getSecond](#getsecond)
+  * [addYears](#addyears)
+  * [addMonths](#addmonths)
+  * [addDays](#adddays)
+  * [addHours](#addhours)
+  * [addMinutes](#addminutes)
+  * [addSeconds](#addseconds)
+  * [subYears](#subyears)
+  * [subMonths](#submonths)
+  * [subDays](#subdays)
+  * [subHours](#subhours)
+  * [subMinutes](#subminutes)
+  * [subSeconds](#subseconds)
+  * [diffDays](#diffdays)
+  * [diffMonths](#diffmonths)
+  * [diffYears](#diffyears)
 * [Gas Cost](#gas-cost)
 * [Algorithm](#algorithm)
 * [Testing](#testing)
@@ -52,18 +55,35 @@ Instead of using loops and lookup tables, this date conversions library uses for
 
 <hr />
 
+## History
+
+Version  | Date         | Notes
+:------- |:------------ |:-----------------------------
+v1.00    | May 25 2018  | First release (currently WIP)
+
+<br />
+
+<hr />
+
 ## Conventions
 
-Unit      | Range         | Notes
-:-------- |:-------------:|:---------------------------------------------------------------
-timestamp | >= 0          | Unix timestamp, number of seconds since 1970/01/01 00:00:00 UTC
-year      | 1970 ... 2345 |
-month     | 1 ... 12      |
-day       | 1 ... 31      |
-hour      | 0 ... 23      |
-minute    | 0 ... 59      |
-second    | 0 ... 59      |
-dayOfWeek | 1 ... 7       | 1 = Monday, ..., 7 = Sunday
+All dates, times and Unix timestamps are [UTC](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
+
+Unit           | Range                     | Notes
+:------------- |:-------------------------:|:---------------------------------------------------------------
+timestamp      | >= 0                      | Unix timestamp, number of seconds since 1970/01/01 00:00:00 UTC
+year           | 1970 ... 2345             |
+month          | 1 ... 12                  |
+day            | 1 ... 31                  |
+hour           | 0 ... 23                  |
+minute         | 0 ... 59                  |
+second         | 0 ... 59                  |
+dayOfWeek      | 1 ... 7                   | 1 = Monday, ..., 7 = Sunday
+year/month/day | 1970/01/01 ... 2345/12/31 |
+
+`_days`, `_months` and `_years` variable names are `_`-prefixed as the non-prefixed versions are reserve words in Solidity.
+
+All functions operate on the `uint` timestamp data type, except for functions prefixed with `_`.
 
 <br />
 
@@ -71,23 +91,29 @@ dayOfWeek | 1 ... 7       | 1 = Monday, ..., 7 = Sunday
 
 ## Functions
 
-### daysFromDate
+### _daysFromDate
+
+Calculate the number of days `_days` from 1970/01/01 to `year`/`month`/`day`
 
 ```javascript
-function daysFromDate(uint year, uint month, uint day) public pure returns (uint _days)
+function _daysFromDate(uint year, uint month, uint day) public pure returns (uint _days)
 ```
 
 <br />
 
-### daysToDate
+### _daysToDate
+
+Calculate `year`/`month`/`day` from the number of days `_days` since 1970/01/01
 
 ```javascript
-function daysToDate(uint _days) public pure returns (uint year, uint month, uint day)
+function _daysToDate(uint _days) public pure returns (uint year, uint month, uint day)
 ```
 
 <br />
 
 ### timestampFromDate
+
+Calculate the `timestamp` to `year`/`month`/`day`
 
 ```javascript
 function timestampFromDate(uint year, uint month, uint day) public pure returns (uint timestamp)
@@ -97,6 +123,8 @@ function timestampFromDate(uint year, uint month, uint day) public pure returns 
 
 ### timestampFromDateTime
 
+Calculate the `timestamp` to `year`/`month`/`day` `hour`:`minute`:`second` UTC
+
 ```javascript
 function timestampFromDateTime(uint year, uint month, uint day, uint hour, uint minute, uint second) public pure returns (uint timestamp)
 ```
@@ -104,6 +132,8 @@ function timestampFromDateTime(uint year, uint month, uint day, uint hour, uint 
 <br />
 
 ### timestampToDate
+
+Calculate `year`/`month`/`day` from `timestamp`
 
 ```javascript
 function timestampToDate(uint timestamp) public pure returns (uint year, uint month, uint day)
@@ -113,21 +143,27 @@ function timestampToDate(uint timestamp) public pure returns (uint year, uint mo
 
 ### timestampToDateTime
 
+Calculate `year`/`month`/`day` `hour`:`minute`:`second` from `timestamp`
+
 ```javascript
 function timestampToDateTime(uint timestamp) public pure returns (uint year, uint month, uint day, uint hour, uint minute, uint second)
 ```
 
 <br />
 
-### isLeapYear
+### _isLeapYear
 
-```javascript
-function isLeapYear(uint year) public pure returns (bool leapYear)
+Is the specified `year` (e.g. 2018) a leap year?
+
+```javascript_
+function _isLeapYear(uint year) public pure returns (bool leapYear)
 ```
 
 <br />
 
 ### isWeekDay
+
+Is the date specified by `timestamp` a weekday (Monday, ..., Friday)?
 
 ```javascript
 function isWeekDay(uint timestamp) public pure returns (bool weekDay)
@@ -137,21 +173,27 @@ function isWeekDay(uint timestamp) public pure returns (bool weekDay)
 
 ### isWeekEnd
 
+Is the date specified by `timestamp` a weekend (Saturday, Sunday)?
+
 ```javascript
 function isWeekEnd(uint timestamp) public pure returns (bool weekEnd)
 ```
 
 <br />
 
-### getDaysInMonth
+### _getDaysInMonth
+
+Return the day in the month `dim` for the month specified by the `year`/`month`
 
 ```javascript
-function getDaysInMonth(uint year, uint month) public pure returns (uint dim)
+function _getDaysInMonth(uint year, uint month) public pure returns (uint dim)
 ```
 
 <br />
 
 ### getDayOfWeek
+
+Return the day of the week `dow` (1 = Monday, ..., 7 = Sunday) for the date specified by `timestamp`
 
 ```javascript
 function getDayOfWeek(uint timestamp) public pure returns (uint dow)
@@ -161,6 +203,8 @@ function getDayOfWeek(uint timestamp) public pure returns (uint dow)
 
 ### getYear
 
+Get the `year` of the date specified by `timestamp`
+
 ```javascript
 function getYear(uint timestamp) public pure returns (uint year)
 ```
@@ -168,6 +212,8 @@ function getYear(uint timestamp) public pure returns (uint year)
 <br />
 
 ### getMonth
+
+Get the `month` of the date specified by `timestamp`
 
 ```javascript
 function getMonth(uint timestamp) public pure returns (uint month)
@@ -177,6 +223,8 @@ function getMonth(uint timestamp) public pure returns (uint month)
 
 ### getDay
 
+Get the day of the month `day` (1, ..., 31) of the date specified `timestamp`
+
 ```javascript
 function getDay(uint timestamp) public pure returns (uint day)
 ```
@@ -184,6 +232,8 @@ function getDay(uint timestamp) public pure returns (uint day)
 <br />
 
 ### getHour
+
+Get the `hour` of the date and time specified by `timestamp`
 
 ```javascript
 function getHour(uint timestamp) public pure returns (uint hour)
@@ -193,6 +243,8 @@ function getHour(uint timestamp) public pure returns (uint hour)
 
 ### getMinute
 
+Get the `minute` of the date and time specified by `timestamp`
+
 ```javascript
 function getMinute(uint timestamp) public pure returns (uint minute)
 ```
@@ -200,6 +252,8 @@ function getMinute(uint timestamp) public pure returns (uint minute)
 <br />
 
 ### getSecond
+
+Get the `second` of the date and time specified by `timestamp`
 
 ```javascript
 function getSecond(uint timestamp) public pure returns (uint second)
