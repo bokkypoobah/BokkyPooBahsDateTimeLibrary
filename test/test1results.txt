@@ -20,8 +20,8 @@
 ----- Deploy DateTime Library -----
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.005293408000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005293408000000000           0.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.007812096000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.007812096000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Alice
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Bob
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Carol
@@ -32,19 +32,19 @@
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
-12 0x0779c66d49a48e162bc0c7244b3baef8a2eba1ef        0.000000000000000000           0.000000000000000000 DateTime Library
+12 0x50f9373af8fbe97174ca293ec9dce871bfa2f9cd        0.000000000000000000           0.000000000000000000 DateTime Library
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy DateTime Library
-dateTimeLibTx status=0x1 Success gas=6000000 gasUsed=330838 costETH=0.005293408 costUSD=3.57680871968 @ ETH/USD=675.71 gasPrice=16 gwei block=11763 txIx=0 txId=0x10e082710e92b2fb7056d963aabc010bd1febc0e354eaa8266b734cf65914623 @ 1527098616 Wed, 23 May 2018 18:03:36 UTC
+dateTimeLibTx status=0x1 Success gas=6000000 gasUsed=488256 costETH=0.007812096 costUSD=5.27871138816 @ ETH/USD=675.71 gasPrice=16 gwei block=23725 txIx=0 txId=0xf186bc7a3e01cad0980ca92b2f04d1f74c73932846c9da72951ed9f07627b518 @ 1527129832 Thu, 24 May 2018 02:43:52 UTC
 
 ---------- Deploy TestDateTime Contract ----------
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.012382096000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.012382096000000000           0.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.019811392000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.019811392000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Alice
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Bob
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Carol
@@ -55,14 +55,14 @@ dateTimeLibTx status=0x1 Success gas=6000000 gasUsed=330838 costETH=0.005293408 
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
-12 0x0779c66d49a48e162bc0c7244b3baef8a2eba1ef        0.000000000000000000           0.000000000000000000 DateTime Library
-13 0x1b8b7961968285d8e0bc6580e101b495b5ad166f        0.000000000000000000           0.000000000000000000 TestDateTime
+12 0x50f9373af8fbe97174ca293ec9dce871bfa2f9cd        0.000000000000000000           0.000000000000000000 DateTime Library
+13 0x4b90969d3d0cbb38439f6630d164ab97070cc752        0.000000000000000000           0.000000000000000000 TestDateTime
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy TestDateTime Contract
-testDateTimeAddress=0x1b8b7961968285d8e0bc6580e101b495b5ad166f status=0x1 Success gas=6000000 gasUsed=443043 costETH=0.007088688 costUSD=4.78989736848 @ ETH/USD=675.71 gasPrice=16 gwei block=11765 txIx=0 txId=0xe51236c064f121f5a6bcc52f8033f6fc2d36eace502078d5d976324ec72bff27 @ 1527098618 Wed, 23 May 2018 18:03:38 UTC
+testDateTimeAddress=0x4b90969d3d0cbb38439f6630d164ab97070cc752 status=0x1 Success gas=6000000 gasUsed=749956 costETH=0.011999296 costUSD=8.10804430016 @ ETH/USD=675.71 gasPrice=16 gwei block=23727 txIx=0 txId=0x7b4f927eafb75756bc5676df8fabbab05382c3368842b2e3e1e9980364dc28dd @ 1527129834 Thu, 24 May 2018 02:43:54 UTC
 
 ---------- Test diff{Days|Months|Years} ----------
 diffDays(2017,10,21,1,2,3, 2019,7,18,4,5,6) = 635

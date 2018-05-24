@@ -10,11 +10,21 @@ pragma solidity ^0.4.23;
 // And adding an offset of 2440588 so that 1970/01/01 is day 0. Then
 // multiplying by seconds in a day to handle the Unix timestamp format
 //
-// Tested date range 1970/01/01 to 2222/12/31
+// Tested date range 1970/01/01 to 2345/12/31
 //
-// 1970 <= year  <= 2099
-//    1 <= month <= 12
-//    1 <= day   <= 31
+// Conventions:
+//
+// Unit      | Range         | Notes
+// :-------- |:-------------:|:-----
+// timestamp | >= 0          | Unix timestamp, number of seconds since 1970/01/01 00:00:00 UTC
+// year      | 1970 ... 2345 |
+// month     | 1 ... 12      |
+// day       | 1 ... 31      |
+// hour      | 0 ... 23      |
+// minute    | 0 ... 59      |
+// second    | 0 ... 59      |
+// dayOfWeek | 1 ... 7       | 1 = Monday, ..., 7 = Sunday
+//
 //
 // Enjoy. (c) BokkyPooBah / Bok Consulting Pty Ltd 2018.
 //
@@ -24,6 +34,8 @@ pragma solidity ^0.4.23;
 
 library BokkyPooBahsDateTimeLibrary {
 
+    uint public constant SECONDS_PER_MINUTE = 60;
+    uint public constant SECONDS_PER_HOUR = 60 * 60;
     uint public constant SECONDS_PER_DAY = 24 * 60 * 60;
     int public constant OFFSET19700101 = 2440588;
 
@@ -31,7 +43,7 @@ library BokkyPooBahsDateTimeLibrary {
         return daysFromDate(year, month, day) * SECONDS_PER_DAY;
     }
     function timestampFromDateTime(uint year, uint month, uint day, uint hour, uint minute, uint second) public pure returns (uint timestamp) {
-        return daysFromDate(year, month, day) * SECONDS_PER_DAY + hour * 60 * 60 + minute * 60 + second;
+        return daysFromDate(year, month, day) * SECONDS_PER_DAY + hour * SECONDS_PER_HOUR + minute * SECONDS_PER_MINUTE + second;
     }
     function timestampToDate(uint timestamp) public pure returns (uint year, uint month, uint day) {
         (year, month, day) = daysToDate(timestamp / SECONDS_PER_DAY);
@@ -39,10 +51,53 @@ library BokkyPooBahsDateTimeLibrary {
     function timestampToDateTime(uint timestamp) public pure returns (uint year, uint month, uint day, uint hour, uint minute, uint second) {
         (year, month, day) = daysToDate(timestamp / SECONDS_PER_DAY);
         uint secs = timestamp % SECONDS_PER_DAY;
-        hour = secs / 60 / 60;
-        secs = secs % (60 * 60);
-        minute = secs / 60;
-        second = secs % 60;
+        hour = secs / SECONDS_PER_HOUR;
+        secs = secs % SECONDS_PER_HOUR;
+        minute = secs / SECONDS_PER_MINUTE;
+        second = secs % SECONDS_PER_MINUTE;
+    }
+    function isLeapYear(uint year) public pure returns (bool leapYear) {
+        leapYear = ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+    }
+    function getDaysInMonth(uint year, uint month) public pure returns (uint dim) {
+        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+            dim = 31;
+        } else if (month != 2) {
+            dim = 30;
+        } else {
+            dim = isLeapYear(year) ? 29 : 28;
+        }
+    }
+    // 1 = Monday, 7 = Sunday
+    function getDayOfWeek(uint timestamp) public pure returns (uint dow) {
+        uint _days = timestamp / SECONDS_PER_DAY;
+        dow = (_days + 3) % 7 + 1;
+    }
+    function getYear(uint timestamp) public pure returns (uint year) {
+        uint month;
+        uint day;
+        (year, month, day) = daysToDate(timestamp / SECONDS_PER_DAY);
+    }
+    function getMonth(uint timestamp) public pure returns (uint month) {
+        uint year;
+        uint day;
+        (year, month, day) = daysToDate(timestamp / SECONDS_PER_DAY);
+    }
+    function getDay(uint timestamp) public pure returns (uint day) {
+        uint year;
+        uint month;
+        (year, month, day) = daysToDate(timestamp / SECONDS_PER_DAY);
+    }
+    function getHour(uint timestamp) public pure returns (uint hour) {
+        uint secs = timestamp % SECONDS_PER_DAY;
+        hour = secs / SECONDS_PER_HOUR;
+    }
+    function getMinute(uint timestamp) public pure returns (uint minute) {
+        uint secs = timestamp % SECONDS_PER_HOUR;
+        minute = secs / SECONDS_PER_MINUTE;
+    }
+    function getSecond(uint timestamp) public pure returns (uint second) {
+        second = timestamp % SECONDS_PER_MINUTE;
     }
 
     function diffDays(uint fromTimestamp, uint toTimestamp) public pure returns (uint _days) {

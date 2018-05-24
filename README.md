@@ -12,9 +12,27 @@ Instead of using loops and lookup tables, the date conversions in this library u
 
 ## Table Of Contents
 
+* [Conventions](#conventions)
 * [Gas Cost](#gas-cost)
 * [Algorithm](#algorithm)
 * [Testing](#testing)
+
+<br />
+
+<hr />
+
+## Conventions
+
+Unit      | Range         | Notes
+:-------- |:-------------:|:-----
+timestamp | >= 0          | Unix timestamp, number of seconds since 1970/01/01 00:00:00 UTC
+year      | 1970 ... 2345 |
+month     | 1 ... 12      |
+day       | 1 ... 31      |
+hour      | 0 ... 23      |
+minute    | 0 ... 59      |
+second    | 0 ... 59      |
+dayOfWeek | 1 ... 7       | 1 = Monday, ..., 7 = Sunday
 
 
 <br />
