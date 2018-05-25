@@ -125,6 +125,13 @@ library BokkyPooBahsDateTimeLibrary {
         second = secs % SECONDS_PER_MINUTE;
     }
 
+    function isLeapYear(uint timestamp) public pure returns (bool leapYear) {
+        uint year;
+        uint month;
+        uint day;
+        (year, month, day) = _daysToDate(timestamp / SECONDS_PER_DAY);
+        leapYear = _isLeapYear(year);
+    }
     function _isLeapYear(uint year) public pure returns (bool leapYear) {
         leapYear = ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
     }
@@ -134,20 +141,26 @@ library BokkyPooBahsDateTimeLibrary {
     function isWeekEnd(uint timestamp) public pure returns (bool weekEnd) {
         weekEnd = getDayOfWeek(timestamp) >= DOW_SAT;
     }
-
-    function _getDaysInMonth(uint year, uint month) public pure returns (uint dim) {
+    function getDaysInMonth(uint timestamp) public pure returns (uint daysInMonth) {
+        uint year;
+        uint month;
+        uint day;
+        (year, month, day) = _daysToDate(timestamp / SECONDS_PER_DAY);
+        daysInMonth = _getDaysInMonth(year, month);
+    }
+    function _getDaysInMonth(uint year, uint month) public pure returns (uint daysInMonth) {
         if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
-            dim = 31;
+            daysInMonth = 31;
         } else if (month != 2) {
-            dim = 30;
+            daysInMonth = 30;
         } else {
-            dim = _isLeapYear(year) ? 29 : 28;
+            daysInMonth = _isLeapYear(year) ? 29 : 28;
         }
     }
     // 1 = Monday, 7 = Sunday
-    function getDayOfWeek(uint timestamp) public pure returns (uint dow) {
+    function getDayOfWeek(uint timestamp) public pure returns (uint dayOfWeek) {
         uint _days = timestamp / SECONDS_PER_DAY;
-        dow = (_days + 3) % 7 + 1;
+        dayOfWeek = (_days + 3) % 7 + 1;
     }
 
     function getYear(uint timestamp) public pure returns (uint year) {

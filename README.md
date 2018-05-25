@@ -21,9 +21,11 @@ Instead of using loops and lookup tables, this date conversions library uses for
   * [timestampFromDateTime](#timestampfromdatetime)
   * [timestampToDate](#timestamptodate)
   * [timestampToDateTime](#timestamptodatetime)
+  * [isLeapYear](#isleapyear)
   * [_isLeapYear](#_isleapyear)
   * [isWeekDay](#isweekday)
   * [isWeekEnd](#isweekend)
+  * [getDaysInMonth](#getdaysinmonth)
   * [_getDaysInMonth](#_getdaysinmonth)
   * [getDayOfWeek](#getdayofweek)
   * [getYear](#getyear)
@@ -151,6 +153,16 @@ function timestampToDateTime(uint timestamp) public pure returns (uint year, uin
 
 <br />
 
+### isLeapYear
+
+Is the year specified by `timestamp` a leap year?
+
+```javascript_
+function isLeapYear(uint timestamp) public pure returns (bool leapYear)
+```
+
+<br />
+
 ### _isLeapYear
 
 Is the specified `year` (e.g. 2018) a leap year?
@@ -163,7 +175,7 @@ function _isLeapYear(uint year) public pure returns (bool leapYear)
 
 ### isWeekDay
 
-Is the date specified by `timestamp` a weekday (Monday, ..., Friday)?
+Is the day specified by `timestamp` a weekday (Monday, ..., Friday)?
 
 ```javascript
 function isWeekDay(uint timestamp) public pure returns (bool weekDay)
@@ -173,7 +185,7 @@ function isWeekDay(uint timestamp) public pure returns (bool weekDay)
 
 ### isWeekEnd
 
-Is the date specified by `timestamp` a weekend (Saturday, Sunday)?
+Is the day specified by `timestamp` a weekend (Saturday, Sunday)?
 
 ```javascript
 function isWeekEnd(uint timestamp) public pure returns (bool weekEnd)
@@ -181,22 +193,32 @@ function isWeekEnd(uint timestamp) public pure returns (bool weekEnd)
 
 <br />
 
-### _getDaysInMonth
+### getDaysInMonth
 
-Return the day in the month `dim` for the month specified by the `year`/`month`
+Return the day in the month `daysInMonth` for the month specified by `timestamp`
 
 ```javascript
-function _getDaysInMonth(uint year, uint month) public pure returns (uint dim)
+function getDaysInMonth(uint timestamp) public pure returns (uint daysInMonth)
+```
+
+<br />
+
+### _getDaysInMonth
+
+Return the day in the month `daysInMonth` (1, ..., 31) for the month specified by the `year`/`month`
+
+```javascript
+function _getDaysInMonth(uint year, uint month) public pure returns (uint daysInMonth)
 ```
 
 <br />
 
 ### getDayOfWeek
 
-Return the day of the week `dow` (1 = Monday, ..., 7 = Sunday) for the date specified by `timestamp`
+Return the day of the week `dayOfWeek` (1 = Monday, ..., 7 = Sunday) for the date specified by `timestamp`
 
 ```javascript
-function getDayOfWeek(uint timestamp) public pure returns (uint dow)
+function getDayOfWeek(uint timestamp) public pure returns (uint dayOfWeek)
 ```
 
 <br />
@@ -520,10 +542,20 @@ The DateTime library calculations have been tested for the date range 1970/01/01
 The following functions were tested using the script [test/01_test1.sh](test/01_test1.sh) with the summary results saved
 in [test/test1results.txt](test/test1results.txt) and the detailed output saved in [test/test1output.txt](test/test1output.txt):
 
-* [x] Deploy DateTime library
-* [x] For a range of Unix timestamps
-  * [x] Generate the year/month/day hour/minute/second from the Unix timestamp
-  * [x] Generate the Unix timestamp from the calculated year/month/day hour/minute/second
+* [x] Deploy [contracts/BokkyPooBahsDateTimeLibrary.sol](contracts/BokkyPooBahsDateTimeLibrary.sol) library
+* [x] Deploy [contracts/TestDateTime.sol](contracts/TestDateTime.sol) contract
+* [x] Test `_isLeapYear(...)`
+* [x] Test `isWeekDay(...)`
+* [x] Test `isWeekEnd(...)`
+* [x] Test `_getDaysInMonth(...)`
+* [x] Test `getDayOfWeek(...)`
+* [x] Test `get{Year|Month|Day|Hour|Minute|Second}(...)`
+* [x] Test `add{Years|Months|Days|Hours|Minutes|Seconds}(...)`
+* [x] Test `sub{Years|Months|Days|Hours|Minutes|Seconds}(...)`
+* [x] Test `diff{Days|Months|Years}(...)`
+* [x] For a range of Unix timestamps from 1970/01/01 to 2345/12/21
+  * [x] Generate the year/month/day hour/minute/second from the Unix timestamp using `timestampToDateTime(...)`
+  * [x] Generate the Unix timestamp from the calculated year/month/day hour/minute/second using `timestampFromDateTime(...)`
   * [x] Compare the year/month/day hour/minute/second to the JavaScript *Date* calculation
 
 <br />

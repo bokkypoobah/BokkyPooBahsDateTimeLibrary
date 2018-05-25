@@ -36,6 +36,9 @@ contract TestDateTime {
         (year, month, day, hour, minute, second) = BokkyPooBahsDateTimeLibrary.timestampToDateTime(timestamp);
     }
 
+    function isLeapYear(uint timestamp) public pure returns (bool leapYear) {
+        leapYear = BokkyPooBahsDateTimeLibrary.isLeapYear(timestamp);
+    }
     function _isLeapYear(uint year) public pure returns (bool leapYear) {
         leapYear = BokkyPooBahsDateTimeLibrary._isLeapYear(year);
     }
@@ -46,11 +49,14 @@ contract TestDateTime {
         weekEnd = BokkyPooBahsDateTimeLibrary.isWeekEnd(timestamp);
     }
 
-    function _getDaysInMonth(uint year, uint month) public pure returns (uint dim) {
-        dim = BokkyPooBahsDateTimeLibrary._getDaysInMonth(year, month);
+    function getDaysInMonth(uint timestamp) public pure returns (uint daysInMonth) {
+        daysInMonth = BokkyPooBahsDateTimeLibrary.getDaysInMonth(timestamp);
     }
-    function getDayOfWeek(uint timestamp) public pure returns (uint dow) {
-        dow = BokkyPooBahsDateTimeLibrary.getDayOfWeek(timestamp);
+    function _getDaysInMonth(uint year, uint month) public pure returns (uint daysInMonth) {
+        daysInMonth = BokkyPooBahsDateTimeLibrary._getDaysInMonth(year, month);
+    }
+    function getDayOfWeek(uint timestamp) public pure returns (uint dayOfWeek) {
+        dayOfWeek = BokkyPooBahsDateTimeLibrary.getDayOfWeek(timestamp);
     }
 
     function getYear(uint timestamp) public pure returns (uint year) {
