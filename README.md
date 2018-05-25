@@ -544,9 +544,11 @@ in [test/test1results.txt](test/test1results.txt) and the detailed output saved 
 
 * [x] Deploy [contracts/BokkyPooBahsDateTimeLibrary.sol](contracts/BokkyPooBahsDateTimeLibrary.sol) library
 * [x] Deploy [contracts/TestDateTime.sol](contracts/TestDateTime.sol) contract
+* [x] Test `isLeapYear(...)`
 * [x] Test `_isLeapYear(...)`
 * [x] Test `isWeekDay(...)`
 * [x] Test `isWeekEnd(...)`
+* [x] Test `getDaysInMonth(...)`
 * [x] Test `_getDaysInMonth(...)`
 * [x] Test `getDayOfWeek(...)`
 * [x] Test `get{Year|Month|Day|Hour|Minute|Second}(...)`

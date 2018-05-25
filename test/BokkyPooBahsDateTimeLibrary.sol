@@ -30,18 +30,18 @@ pragma solidity ^0.4.23;
 
 library BokkyPooBahsDateTimeLibrary {
 
-    uint public constant SECONDS_PER_MINUTE = 60;
-    uint public constant SECONDS_PER_HOUR = 60 * 60;
-    uint public constant SECONDS_PER_DAY = 24 * 60 * 60;
-    int public constant OFFSET19700101 = 2440588;
+    uint constant SECONDS_PER_MINUTE = 60;
+    uint constant SECONDS_PER_HOUR = 60 * 60;
+    uint constant SECONDS_PER_DAY = 24 * 60 * 60;
+    int constant OFFSET19700101 = 2440588;
 
-    uint public constant DOW_MON = 1;
-    uint public constant DOW_TUE = 2;
-    uint public constant DOW_WED = 3;
-    uint public constant DOW_THU = 4;
-    uint public constant DOW_FRI = 5;
-    uint public constant DOW_SAT = 6;
-    uint public constant DOW_SUN = 7;
+    uint constant DOW_MON = 1;
+    uint constant DOW_TUE = 2;
+    uint constant DOW_WED = 3;
+    uint constant DOW_THU = 4;
+    uint constant DOW_FRI = 5;
+    uint constant DOW_SAT = 6;
+    uint constant DOW_SUN = 7;
 
     // ------------------------------------------------------------------------
     // Calculate the number of days from 1970/01/01 to year/month/day using

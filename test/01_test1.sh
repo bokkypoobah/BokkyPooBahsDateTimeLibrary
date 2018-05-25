@@ -155,6 +155,25 @@ var failureDetected = false;
 var timestamp;
 var newTimestamp;
 var expectedTimestamp;
+var fromTimestamp;
+var toTimestamp;
+
+if ("$MODE" == "full") {
+  console.log("RESULT: ---------- Test isLeapYear ----------");
+  timestamp = testDateTime.timestampFromDateTime(2000, 5, 24, 1, 2, 3);
+  if (!assert(testDateTime.isLeapYear(timestamp), testDateTime.timestampToDateTime(timestamp) + " is a leap year")) {
+    failureDetected = true;
+  }
+  timestamp = testDateTime.timestampFromDateTime(2100, 5, 24, 1, 2, 3);
+  if (!assert(!testDateTime.isLeapYear(timestamp), testDateTime.timestampToDateTime(timestamp) + " is a not leap year")) {
+    failureDetected = true;
+  }
+  timestamp = testDateTime.timestampFromDateTime(2104, 5, 24, 1, 2, 3);
+  if (!assert(testDateTime.isLeapYear(timestamp), testDateTime.timestampToDateTime(timestamp) + " is a leap year")) {
+    failureDetected = true;
+  }
+  console.log("RESULT: ");
+}
 
 if ("$MODE" == "full") {
   console.log("RESULT: ---------- Test _isLeapYear ----------");
@@ -203,6 +222,64 @@ if ("$MODE" == "full") {
   }
   timestamp = testDateTime.timestampFromDateTime(2018, 5, 27, 1, 2, 3);
   if (!assert(testDateTime.isWeekEnd(timestamp), testDateTime.timestampToDateTime(timestamp) + " is a week end")) {
+    failureDetected = true;
+  }
+  console.log("RESULT: ");
+}
+
+
+if ("$MODE" == "full") {
+  console.log("RESULT: ---------- Test getDaysInMonth ----------");
+  timestamp = testDateTime.timestampFromDateTime(2000, 1, 24, 1, 2, 3);
+  if (!assert(testDateTime.getDaysInMonth(timestamp) == 31, testDateTime.timestampToDateTime(timestamp) + " has 31 days")) {
+    failureDetected = true;
+  }
+  timestamp = testDateTime.timestampFromDateTime(2000, 2, 24, 1, 2, 3);
+  if (!assert(testDateTime.getDaysInMonth(timestamp) == 29, testDateTime.timestampToDateTime(timestamp) + " has 29 days")) {
+    failureDetected = true;
+  }
+  timestamp = testDateTime.timestampFromDateTime(2001, 2, 24, 1, 2, 3);
+  if (!assert(testDateTime.getDaysInMonth(timestamp) == 28, testDateTime.timestampToDateTime(timestamp) + " has 28 days")) {
+    failureDetected = true;
+  }
+  timestamp = testDateTime.timestampFromDateTime(2000, 3, 24, 1, 2, 3);
+  if (!assert(testDateTime.getDaysInMonth(timestamp) == 31, testDateTime.timestampToDateTime(timestamp) + " has 31 days")) {
+    failureDetected = true;
+  }
+  timestamp = testDateTime.timestampFromDateTime(2000, 4, 24, 1, 2, 3);
+  if (!assert(testDateTime.getDaysInMonth(timestamp) == 30, testDateTime.timestampToDateTime(timestamp) + " has 30 days")) {
+    failureDetected = true;
+  }
+  timestamp = testDateTime.timestampFromDateTime(2000, 5, 24, 1, 2, 3);
+  if (!assert(testDateTime.getDaysInMonth(timestamp) == 31, testDateTime.timestampToDateTime(timestamp) + " has 31 days")) {
+    failureDetected = true;
+  }
+  timestamp = testDateTime.timestampFromDateTime(2000, 6, 24, 1, 2, 3);
+  if (!assert(testDateTime.getDaysInMonth(timestamp) == 30, testDateTime.timestampToDateTime(timestamp) + " has 30 days")) {
+    failureDetected = true;
+  }
+  timestamp = testDateTime.timestampFromDateTime(2000, 7, 24, 1, 2, 3);
+  if (!assert(testDateTime.getDaysInMonth(timestamp) == 31, testDateTime.timestampToDateTime(timestamp) + " has 31 days")) {
+    failureDetected = true;
+  }
+  timestamp = testDateTime.timestampFromDateTime(2000, 8, 24, 1, 2, 3);
+  if (!assert(testDateTime.getDaysInMonth(timestamp) == 31, testDateTime.timestampToDateTime(timestamp) + " has 31 days")) {
+    failureDetected = true;
+  }
+  timestamp = testDateTime.timestampFromDateTime(2000, 9, 24, 1, 2, 3);
+  if (!assert(testDateTime.getDaysInMonth(timestamp) == 30, testDateTime.timestampToDateTime(timestamp) + " has 30 days")) {
+    failureDetected = true;
+  }
+  timestamp = testDateTime.timestampFromDateTime(2000, 10, 24, 1, 2, 3);
+  if (!assert(testDateTime.getDaysInMonth(timestamp) == 31, testDateTime.timestampToDateTime(timestamp) + " has 31 days")) {
+    failureDetected = true;
+  }
+  timestamp = testDateTime.timestampFromDateTime(2000, 11, 24, 1, 2, 3);
+  if (!assert(testDateTime.getDaysInMonth(timestamp) == 30, testDateTime.timestampToDateTime(timestamp) + " has 30 days")) {
+    failureDetected = true;
+  }
+  timestamp = testDateTime.timestampFromDateTime(2000, 12, 24, 1, 2, 3);
+  if (!assert(testDateTime.getDaysInMonth(timestamp) == 31, testDateTime.timestampToDateTime(timestamp) + " has 31 days")) {
     failureDetected = true;
   }
   console.log("RESULT: ");
@@ -402,36 +479,17 @@ if ("$MODE" == "full") {
 
 if ("$MODE" == "full") {
   console.log("RESULT: ---------- Test diff{Days|Months|Years} ----------");
-  var fromTimestamp = testDateTime.timestampFromDateTime(2017, 10, 21, 1, 2, 3);
-  var toTimestamp = testDateTime.timestampFromDateTime(2019, 7, 18, 4, 5, 6);
+  fromTimestamp = testDateTime.timestampFromDateTime(2017, 10, 21, 1, 2, 3);
+  toTimestamp = testDateTime.timestampFromDateTime(2019, 7, 18, 4, 5, 6);
 
-  var diffDays = testDateTime.diffDays(fromTimestamp, toTimestamp);
-  console.log("RESULT: diffDays(" + testDateTime.timestampToDateTime(fromTimestamp) + ", " +
-    testDateTime.timestampToDateTime(toTimestamp) + ") = " + diffDays);
-  if (diffDays == 635) {
-    console.log("RESULT: PASS diffDays");
-  } else {
-    console.log("RESULT: FAIL diffDays");
+  if (!assert(testDateTime.diffDays(fromTimestamp, toTimestamp) == 635, testDateTime.timestampToDateTime(fromTimestamp) + " to " + testDateTime.timestampToDateTime(fromTimestamp) + " has 635 days diff")) {
+    failureDetected = true;
   }
-  console.log("RESULT: ");
-
-  var diffMonths = testDateTime.diffMonths(fromTimestamp, toTimestamp);
-  console.log("RESULT: diffMonths(" + testDateTime.timestampToDateTime(fromTimestamp) + ", " +
-    testDateTime.timestampToDateTime(toTimestamp) + ") = " + diffMonths);
-  if (diffMonths == 21) {
-    console.log("RESULT: PASS diffMonths");
-  } else {
-    console.log("RESULT: FAIL diffMonths");
+  if (!assert(testDateTime.diffMonths(fromTimestamp, toTimestamp) == 21, testDateTime.timestampToDateTime(fromTimestamp) + " to " + testDateTime.timestampToDateTime(fromTimestamp) + " has 21 months diff")) {
+    failureDetected = true;
   }
-  console.log("RESULT: ");
-
-  var diffYears = testDateTime.diffYears(fromTimestamp, toTimestamp);
-  console.log("RESULT: diffYears(" + testDateTime.timestampToDateTime(fromTimestamp) + ", " +
-    testDateTime.timestampToDateTime(toTimestamp) + ") = " + diffYears);
-  if (diffYears == 2) {
-    console.log("RESULT: PASS diffYears");
-  } else {
-    console.log("RESULT: FAIL diffYears");
+  if (!assert(testDateTime.diffYears(fromTimestamp, toTimestamp) == 2, testDateTime.timestampToDateTime(fromTimestamp) + " to " + testDateTime.timestampToDateTime(fromTimestamp) + " has 2 years diff")) {
+    failureDetected = true;
   }
   console.log("RESULT: ");
 }
