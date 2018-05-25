@@ -116,13 +116,22 @@ contract TestDateTime {
         newTimestamp = BokkyPooBahsDateTimeLibrary.subSeconds(timestamp, _seconds);
     }
 
-    function diffDays(uint fromTimestamp, uint toTimestamp) public pure returns (uint _days) {
-        _days = BokkyPooBahsDateTimeLibrary.diffDays(fromTimestamp, toTimestamp);
+    function diffYears(uint fromTimestamp, uint toTimestamp) public pure returns (uint _years) {
+        _years = BokkyPooBahsDateTimeLibrary.diffYears(fromTimestamp, toTimestamp);
     }
     function diffMonths(uint fromTimestamp, uint toTimestamp) public pure returns (uint _months) {
         _months = BokkyPooBahsDateTimeLibrary.diffMonths(fromTimestamp, toTimestamp);
     }
-    function diffYears(uint fromTimestamp, uint toTimestamp) public pure returns (uint _years) {
-        _years = BokkyPooBahsDateTimeLibrary.diffYears(fromTimestamp, toTimestamp);
+    function diffDays(uint fromTimestamp, uint toTimestamp) public pure returns (uint _days) {
+        _days = BokkyPooBahsDateTimeLibrary.diffDays(fromTimestamp, toTimestamp);
+    }
+    function diffHours(uint fromTimestamp, uint toTimestamp) public pure returns (uint _hours) {
+        _hours = BokkyPooBahsDateTimeLibrary.diffHours(fromTimestamp, toTimestamp);
+    }
+    function diffMinutes(uint fromTimestamp, uint toTimestamp) public pure returns (uint _minutes) {
+        _minutes = BokkyPooBahsDateTimeLibrary.diffMinutes(fromTimestamp, toTimestamp);
+    }
+    function diffSeconds(uint fromTimestamp, uint toTimestamp) public pure returns (uint _seconds) {
+        _seconds = BokkyPooBahsDateTimeLibrary.diffSeconds(fromTimestamp, toTimestamp);
     }
 }

@@ -30,9 +30,9 @@ pragma solidity ^0.4.23;
 
 library BokkyPooBahsDateTimeLibrary {
 
-    uint constant SECONDS_PER_MINUTE = 60;
-    uint constant SECONDS_PER_HOUR = 60 * 60;
     uint constant SECONDS_PER_DAY = 24 * 60 * 60;
+    uint constant SECONDS_PER_HOUR = 60 * 60;
+    uint constant SECONDS_PER_MINUTE = 60;
     int constant OFFSET19700101 = 2440588;
 
     uint constant DOW_MON = 1;
@@ -280,9 +280,17 @@ library BokkyPooBahsDateTimeLibrary {
         require(newTimestamp <= timestamp);
     }
 
-    function diffDays(uint fromTimestamp, uint toTimestamp) public pure returns (uint _days) {
+    function diffYears(uint fromTimestamp, uint toTimestamp) public pure returns (uint _years) {
         require(fromTimestamp <= toTimestamp);
-        _days = (toTimestamp - fromTimestamp) / SECONDS_PER_DAY;
+        uint fromYear;
+        uint fromMonth;
+        uint fromDay;
+        uint toYear;
+        uint toMonth;
+        uint toDay;
+        (fromYear, fromMonth, fromDay) = _daysToDate(fromTimestamp / SECONDS_PER_DAY);
+        (toYear, toMonth, toDay) = _daysToDate(toTimestamp / SECONDS_PER_DAY);
+        _years = toYear - fromYear;
     }
     function diffMonths(uint fromTimestamp, uint toTimestamp) public pure returns (uint _months) {
         require(fromTimestamp <= toTimestamp);
@@ -296,16 +304,20 @@ library BokkyPooBahsDateTimeLibrary {
         (toYear, toMonth, toDay) = _daysToDate(toTimestamp / SECONDS_PER_DAY);
         _months = toYear * 12 + toMonth - fromYear * 12 - fromMonth;
     }
-    function diffYears(uint fromTimestamp, uint toTimestamp) public pure returns (uint _years) {
+    function diffDays(uint fromTimestamp, uint toTimestamp) public pure returns (uint _days) {
         require(fromTimestamp <= toTimestamp);
-        uint fromYear;
-        uint fromMonth;
-        uint fromDay;
-        uint toYear;
-        uint toMonth;
-        uint toDay;
-        (fromYear, fromMonth, fromDay) = _daysToDate(fromTimestamp / SECONDS_PER_DAY);
-        (toYear, toMonth, toDay) = _daysToDate(toTimestamp / SECONDS_PER_DAY);
-        _years = toYear - fromYear;
+        _days = (toTimestamp - fromTimestamp) / SECONDS_PER_DAY;
+    }
+    function diffHours(uint fromTimestamp, uint toTimestamp) public pure returns (uint _hours) {
+        require(fromTimestamp <= toTimestamp);
+        _hours = (toTimestamp - fromTimestamp) / SECONDS_PER_HOUR;
+    }
+    function diffMinutes(uint fromTimestamp, uint toTimestamp) public pure returns (uint _minutes) {
+        require(fromTimestamp <= toTimestamp);
+        _minutes = (toTimestamp - fromTimestamp) / SECONDS_PER_MINUTE;
+    }
+    function diffSeconds(uint fromTimestamp, uint toTimestamp) public pure returns (uint _seconds) {
+        require(fromTimestamp <= toTimestamp);
+        _seconds = toTimestamp - fromTimestamp;
     }
 }

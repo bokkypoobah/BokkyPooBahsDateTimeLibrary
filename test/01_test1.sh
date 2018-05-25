@@ -478,17 +478,28 @@ if ("$MODE" == "full") {
 }
 
 if ("$MODE" == "full") {
-  console.log("RESULT: ---------- Test diff{Days|Months|Years} ----------");
+  console.log("RESULT: ---------- Test diff{Years|Months|Days|Hours|Minutes|Seconds} ----------");
   fromTimestamp = testDateTime.timestampFromDateTime(2017, 10, 21, 1, 2, 3);
+  console.log("RESULT: fromTimestamp=" + fromTimestamp + " " + testDateTime.timestampToDateTime(fromTimestamp));
   toTimestamp = testDateTime.timestampFromDateTime(2019, 7, 18, 4, 5, 6);
+  console.log("RESULT: toTimestamp=" + toTimestamp + " " + testDateTime.timestampToDateTime(toTimestamp));
 
-  if (!assert(testDateTime.diffDays(fromTimestamp, toTimestamp) == 635, testDateTime.timestampToDateTime(fromTimestamp) + " to " + testDateTime.timestampToDateTime(fromTimestamp) + " has 635 days diff")) {
+  if (!assert(testDateTime.diffYears(fromTimestamp, toTimestamp) == 2, testDateTime.timestampToDateTime(fromTimestamp) + " to " + testDateTime.timestampToDateTime(toTimestamp) + " has 2 years diff")) {
     failureDetected = true;
   }
-  if (!assert(testDateTime.diffMonths(fromTimestamp, toTimestamp) == 21, testDateTime.timestampToDateTime(fromTimestamp) + " to " + testDateTime.timestampToDateTime(fromTimestamp) + " has 21 months diff")) {
+  if (!assert(testDateTime.diffMonths(fromTimestamp, toTimestamp) == 21, testDateTime.timestampToDateTime(fromTimestamp) + " to " + testDateTime.timestampToDateTime(toTimestamp) + " has 21 months diff")) {
     failureDetected = true;
   }
-  if (!assert(testDateTime.diffYears(fromTimestamp, toTimestamp) == 2, testDateTime.timestampToDateTime(fromTimestamp) + " to " + testDateTime.timestampToDateTime(fromTimestamp) + " has 2 years diff")) {
+  if (!assert(testDateTime.diffDays(fromTimestamp, toTimestamp) == 635, testDateTime.timestampToDateTime(fromTimestamp) + " to " + testDateTime.timestampToDateTime(toTimestamp) + " has 635 days diff")) {
+    failureDetected = true;
+  }
+  if (!assert(testDateTime.diffHours(fromTimestamp, toTimestamp) == 15243, testDateTime.timestampToDateTime(fromTimestamp) + " to " + testDateTime.timestampToDateTime(toTimestamp) + " has 15,243 hours diff")) {
+    failureDetected = true;
+  }
+  if (!assert(testDateTime.diffMinutes(fromTimestamp, toTimestamp) == 914583, testDateTime.timestampToDateTime(fromTimestamp) + " to " + testDateTime.timestampToDateTime(toTimestamp) + " has 914,583 minutes diff")) {
+    failureDetected = true;
+  }
+  if (!assert(testDateTime.diffSeconds(fromTimestamp, toTimestamp) == 54874983, testDateTime.timestampToDateTime(fromTimestamp) + " to " + testDateTime.timestampToDateTime(toTimestamp) + " has 54,874,983 seconds diff")) {
     failureDetected = true;
   }
   console.log("RESULT: ");
