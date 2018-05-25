@@ -1,6 +1,6 @@
 # BokkyPooBah's DateTime Library
 
-**Status: Work in progress**
+**Status: I'm currently trying to get this library audited, so don't use in production mode yet. Feedback welcome.**
 
 A gas-efficient Solidity date and time library.
 
@@ -46,9 +46,12 @@ Instead of using loops and lookup tables, this date conversions library uses for
   * [subHours](#subhours)
   * [subMinutes](#subminutes)
   * [subSeconds](#subseconds)
-  * [diffDays](#diffdays)
-  * [diffMonths](#diffmonths)
   * [diffYears](#diffyears)
+  * [diffMonths](#diffmonths)
+  * [diffDays](#diffdays)
+  * [diffHours](#diffhours)
+  * [diffMinutes](#diffminutes)
+  * [diffSeconds](#diffseconds)
 * [Gas Cost](#gas-cost)
 * [Algorithm](#algorithm)
 * [Testing](#testing)
@@ -60,8 +63,8 @@ Instead of using loops and lookup tables, this date conversions library uses for
 ## History
 
 Version  | Date         | Notes
-:------- |:------------ |:-----------------------------
-v1.00    | May 25 2018  | First release (currently WIP)
+:------- |:------------ |:---------------------------------------
+v1.00    | May 25 2018  | First release (currently being audited)
 
 <br />
 
@@ -95,7 +98,7 @@ All functions operate on the `uint` timestamp data type, except for functions pr
 
 ### _daysFromDate
 
-Calculate the number of days `_days` from 1970/01/01 to `year`/`month`/`day`
+Calculate the number of days `_days` from 1970/01/01 to `year`/`month`/`day`.
 
 ```javascript
 function _daysFromDate(uint year, uint month, uint day) public pure returns (uint _days)
@@ -105,7 +108,7 @@ function _daysFromDate(uint year, uint month, uint day) public pure returns (uin
 
 ### _daysToDate
 
-Calculate `year`/`month`/`day` from the number of days `_days` since 1970/01/01
+Calculate `year`/`month`/`day` from the number of days `_days` since 1970/01/01 .
 
 ```javascript
 function _daysToDate(uint _days) public pure returns (uint year, uint month, uint day)
@@ -115,7 +118,7 @@ function _daysToDate(uint _days) public pure returns (uint year, uint month, uin
 
 ### timestampFromDate
 
-Calculate the `timestamp` to `year`/`month`/`day`
+Calculate the `timestamp` to `year`/`month`/`day`.
 
 ```javascript
 function timestampFromDate(uint year, uint month, uint day) public pure returns (uint timestamp)
@@ -125,7 +128,7 @@ function timestampFromDate(uint year, uint month, uint day) public pure returns 
 
 ### timestampFromDateTime
 
-Calculate the `timestamp` to `year`/`month`/`day` `hour`:`minute`:`second` UTC
+Calculate the `timestamp` to `year`/`month`/`day` `hour`:`minute`:`second` UTC.
 
 ```javascript
 function timestampFromDateTime(uint year, uint month, uint day, uint hour, uint minute, uint second) public pure returns (uint timestamp)
@@ -135,7 +138,7 @@ function timestampFromDateTime(uint year, uint month, uint day, uint hour, uint 
 
 ### timestampToDate
 
-Calculate `year`/`month`/`day` from `timestamp`
+Calculate `year`/`month`/`day` from `timestamp`.
 
 ```javascript
 function timestampToDate(uint timestamp) public pure returns (uint year, uint month, uint day)
@@ -145,7 +148,7 @@ function timestampToDate(uint timestamp) public pure returns (uint year, uint mo
 
 ### timestampToDateTime
 
-Calculate `year`/`month`/`day` `hour`:`minute`:`second` from `timestamp`
+Calculate `year`/`month`/`day` `hour`:`minute`:`second` from `timestamp`.
 
 ```javascript
 function timestampToDateTime(uint timestamp) public pure returns (uint year, uint month, uint day, uint hour, uint minute, uint second)
@@ -195,7 +198,7 @@ function isWeekEnd(uint timestamp) public pure returns (bool weekEnd)
 
 ### getDaysInMonth
 
-Return the day in the month `daysInMonth` for the month specified by `timestamp`
+Return the day in the month `daysInMonth` for the month specified by `timestamp`.
 
 ```javascript
 function getDaysInMonth(uint timestamp) public pure returns (uint daysInMonth)
@@ -205,7 +208,7 @@ function getDaysInMonth(uint timestamp) public pure returns (uint daysInMonth)
 
 ### _getDaysInMonth
 
-Return the day in the month `daysInMonth` (1, ..., 31) for the month specified by the `year`/`month`
+Return the day in the month `daysInMonth` (1, ..., 31) for the month specified by the `year`/`month`.
 
 ```javascript
 function _getDaysInMonth(uint year, uint month) public pure returns (uint daysInMonth)
@@ -215,7 +218,7 @@ function _getDaysInMonth(uint year, uint month) public pure returns (uint daysIn
 
 ### getDayOfWeek
 
-Return the day of the week `dayOfWeek` (1 = Monday, ..., 7 = Sunday) for the date specified by `timestamp`
+Return the day of the week `dayOfWeek` (1 = Monday, ..., 7 = Sunday) for the date specified by `timestamp`.
 
 ```javascript
 function getDayOfWeek(uint timestamp) public pure returns (uint dayOfWeek)
@@ -225,7 +228,7 @@ function getDayOfWeek(uint timestamp) public pure returns (uint dayOfWeek)
 
 ### getYear
 
-Get the `year` of the date specified by `timestamp`
+Get the `year` of the date specified by `timestamp`.
 
 ```javascript
 function getYear(uint timestamp) public pure returns (uint year)
@@ -235,7 +238,7 @@ function getYear(uint timestamp) public pure returns (uint year)
 
 ### getMonth
 
-Get the `month` of the date specified by `timestamp`
+Get the `month` of the date specified by `timestamp`.
 
 ```javascript
 function getMonth(uint timestamp) public pure returns (uint month)
@@ -245,7 +248,7 @@ function getMonth(uint timestamp) public pure returns (uint month)
 
 ### getDay
 
-Get the day of the month `day` (1, ..., 31) of the date specified `timestamp`
+Get the day of the month `day` (1, ..., 31) of the date specified `timestamp`.
 
 ```javascript
 function getDay(uint timestamp) public pure returns (uint day)
@@ -255,7 +258,7 @@ function getDay(uint timestamp) public pure returns (uint day)
 
 ### getHour
 
-Get the `hour` of the date and time specified by `timestamp`
+Get the `hour` of the date and time specified by `timestamp`.
 
 ```javascript
 function getHour(uint timestamp) public pure returns (uint hour)
@@ -265,7 +268,7 @@ function getHour(uint timestamp) public pure returns (uint hour)
 
 ### getMinute
 
-Get the `minute` of the date and time specified by `timestamp`
+Get the `minute` of the date and time specified by `timestamp`.
 
 ```javascript
 function getMinute(uint timestamp) public pure returns (uint minute)
@@ -275,7 +278,7 @@ function getMinute(uint timestamp) public pure returns (uint minute)
 
 ### getSecond
 
-Get the `second` of the date and time specified by `timestamp`
+Get the `second` of the date and time specified by `timestamp`.
 
 ```javascript
 function getSecond(uint timestamp) public pure returns (uint second)
@@ -285,6 +288,10 @@ function getSecond(uint timestamp) public pure returns (uint second)
 
 ### addYears
 
+Add `_years` years to the date and time specified by `timestamp`.
+
+Note that the resulting day of the month will be adjusted if it exceeds the valid number of days in the month. For example, if the original date is 2020/02/29 and an additional year is added to this date, the resulting date will be an invalid date of 2021/02/29. The resulting date is then adjusted to 2021/02/28.
+
 ```javascript
 function addYears(uint timestamp, uint _years) public pure returns (uint newTimestamp)
 ```
@@ -292,6 +299,10 @@ function addYears(uint timestamp, uint _years) public pure returns (uint newTime
 <br />
 
 ### addMonths
+
+Add `_months` months to the date and time specified by `timestamp`.
+
+Note that the resulting day of the month will be adjusted if it exceeds the valid number of days in the month. For example, if the original date is 2019/01/31 and an additional month is added to this date, the resulting date will be an invalid date of 2019/02/31. The resulting date is then adjusted to 2019/02/28.
 
 ```javascript
 function addMonths(uint timestamp, uint _months) public pure returns (uint newTimestamp)
@@ -301,6 +312,8 @@ function addMonths(uint timestamp, uint _months) public pure returns (uint newTi
 
 ### addDays
 
+Add `_days` days to the date and time specified by `timestamp`.
+
 ```javascript
 function addDays(uint timestamp, uint _days) public pure returns (uint newTimestamp)
 ```
@@ -308,6 +321,8 @@ function addDays(uint timestamp, uint _days) public pure returns (uint newTimest
 <br />
 
 ### addHours
+
+Add `_hours` hours to the date and time specified by `timestamp`.
 
 ```javascript
 function addHours(uint timestamp, uint _hours) public pure returns (uint newTimestamp)
@@ -317,6 +332,8 @@ function addHours(uint timestamp, uint _hours) public pure returns (uint newTime
 
 ### addMinutes
 
+Add `_minutes` minutes to the date and time specified by `timestamp`.
+
 ```javascript
 function addMinutes(uint timestamp, uint _minutes) public pure returns (uint newTimestamp)
 ```
@@ -324,6 +341,8 @@ function addMinutes(uint timestamp, uint _minutes) public pure returns (uint new
 <br />
 
 ### addSeconds
+
+Add `_seconds` seconds to the date and time specified by `timestamp`.
 
 ```javascript
 function addSeconds(uint timestamp, uint _seconds) public pure returns (uint newTimestamp)
@@ -333,6 +352,10 @@ function addSeconds(uint timestamp, uint _seconds) public pure returns (uint new
 
 ### subYears
 
+Subtract `_years` years from the date and time specified by `timestamp`.
+
+Note that the resulting day of the month will be adjusted if it exceeds the valid number of days in the month. For example, if the original date is 2020/02/29 and a year is subtracted from this date, the resulting date will be an invalid date of 2019/02/29. The resulting date is then adjusted to 2019/02/28.
+
 ```javascript
 function subYears(uint timestamp, uint _years) public pure returns (uint newTimestamp)
 ```
@@ -340,6 +363,10 @@ function subYears(uint timestamp, uint _years) public pure returns (uint newTime
 <br />
 
 ### subMonths
+
+Subtract `_months` months from the date and time specified by `timestamp`.
+
+Note that the resulting day of the month will be adjusted if it exceeds the valid number of days in the month. For example, if the original date is 2019/03/31 and a month is subtracted from this date, the resulting date will be an invalid date of 2019/02/31. The resulting date is then adjusted to 2019/02/28.
 
 ```javascript
 function subMonths(uint timestamp, uint _months) public pure returns (uint newTimestamp)
@@ -349,6 +376,8 @@ function subMonths(uint timestamp, uint _months) public pure returns (uint newTi
 
 ### subDays
 
+Subtract `_days` days from the date and time specified by `timestamp`.
+
 ```javascript
 function subDays(uint timestamp, uint _days) public pure returns (uint newTimestamp)
 ```
@@ -356,6 +385,8 @@ function subDays(uint timestamp, uint _days) public pure returns (uint newTimest
 <br />
 
 ### subHours
+
+Subtract `_hours` hours from the date and time specified by `timestamp`.
 
 ```javascript
 function subHours(uint timestamp, uint _hours) public pure returns (uint newTimestamp)
@@ -365,6 +396,8 @@ function subHours(uint timestamp, uint _hours) public pure returns (uint newTime
 
 ### subMinutes
 
+Subtract `_minutes` minutes from the date and time specified by `timestamp`.
+
 ```javascript
 function subMinutes(uint timestamp, uint _minutes) public pure returns (uint newTimestamp)
 ```
@@ -373,21 +406,31 @@ function subMinutes(uint timestamp, uint _minutes) public pure returns (uint new
 
 ### subSeconds
 
+Subtract `_seconds` seconds from the date and time specified by `timestamp`.
+
 ```javascript
 function subSeconds(uint timestamp, uint _seconds) public pure returns (uint newTimestamp)
 ```
 
 <br />
 
-### diffDays
+### diffYears
+
+Calculate the number of years between the dates specified by `fromTimeStamp` and `toTimestamp`.
+
+Note that this calculation is computed as `getYear(toTimestamp) - getYear(fromTimestamp)`, rather that subtracting the years (since 1970/01/01) represented by both `{to|from}Timestamp`.
 
 ```javascript
-function diffDays(uint fromTimestamp, uint toTimestamp) public pure returns (uint _days)
+function diffYears(uint fromTimestamp, uint toTimestamp) public pure returns (uint _years)
 ```
 
 <br />
 
 ### diffMonths
+
+Calculate the number of months between the dates specified by `fromTimeStamp` and `toTimestamp`.
+
+Note that this calculation is computed as `getYear(toTimestamp) * 12 + getMonth(toTimestamp) - getYear(fromTimestamp) * 12 - getMonth(fromTimestamp)`, rather that subtracting the months (since 1970/01/01) represented by both `{to|from}Timestamp`.
 
 ```javascript
 function diffMonths(uint fromTimestamp, uint toTimestamp) public pure returns (uint _months)
@@ -395,10 +438,50 @@ function diffMonths(uint fromTimestamp, uint toTimestamp) public pure returns (u
 
 <br />
 
-### diffYears
+### diffDays
+
+Calculate the number of days between the dates specified by `fromTimeStamp` and `toTimestamp`.
+
+Note that this calculation is computed as `(toTimestamp - fromTimestamp) / SECONDS_PER_DAY`, rather that subtracting the days (since 1970/01/01) represented by both `{to|from}Timestamp`.
 
 ```javascript
-function diffYears(uint fromTimestamp, uint toTimestamp) public pure returns (uint _years)
+function diffDays(uint fromTimestamp, uint toTimestamp) public pure returns (uint _days)
+```
+
+<br />
+
+### diffHours
+
+Calculate the number of hours between the dates specified by `fromTimeStamp` and `toTimestamp`.
+
+Note that this calculation is computed as `(toTimestamp - fromTimestamp) / SECONDS_PER_HOUR`, rather that subtracting the hours (since 1970/01/01) represented by both `{to|from}Timestamp`.
+
+```javascript
+function diffHours(uint fromTimestamp, uint toTimestamp) public pure returns (uint _hours)
+```
+
+<br />
+
+### diffMinutes
+
+Calculate the number of minutes between the dates specified by `fromTimeStamp` and `toTimestamp`.
+
+Note that this calculation is computed as `(toTimestamp - fromTimestamp) / SECONDS_PER_MINUTE`, rather that subtracting the minutes (since 1970/01/01) represented by both `{to|from}Timestamp`.
+
+```javascript
+function diffMinutes(uint fromTimestamp, uint toTimestamp) public pure returns (uint _minutes)
+```
+
+<br />
+
+### diffSeconds
+
+Calculate the number of seconds between the dates specified by `fromTimeStamp` and `toTimestamp`.
+
+Note that this calculation is computed as `toTimestamp - fromTimestamp`.
+
+```javascript
+function diffSeconds(uint fromTimestamp, uint toTimestamp) public pure returns (uint _seconds)
 ```
 
 <br />
@@ -418,7 +501,7 @@ From executing the following function, the transaction gas cost is 24,693
 24693
 ```
 
-From Remix, the execution gas cost is 3,101.
+From Remix, the execution gas cost is 3,101 .
 
 <br />
 
@@ -433,7 +516,7 @@ From executing the following function, the transaction gas cost is 25,054
 25054
 ```
 
-From Remix, the execution gas cost is 2,566
+From Remix, the execution gas cost is 2,566 .
 
 <br />
 
@@ -554,7 +637,7 @@ in [test/test1results.txt](test/test1results.txt) and the detailed output saved 
 * [x] Test `get{Year|Month|Day|Hour|Minute|Second}(...)`
 * [x] Test `add{Years|Months|Days|Hours|Minutes|Seconds}(...)`
 * [x] Test `sub{Years|Months|Days|Hours|Minutes|Seconds}(...)`
-* [x] Test `diff{Days|Months|Years}(...)`
+* [x] Test `diff{Years|Months|Days|Hours|Minutes|Seconds}(...)`
 * [x] For a range of Unix timestamps from 1970/01/01 to 2345/12/21
   * [x] Generate the year/month/day hour/minute/second from the Unix timestamp using `timestampToDateTime(...)`
   * [x] Generate the Unix timestamp from the calculated year/month/day hour/minute/second using `timestampFromDateTime(...)`
@@ -564,4 +647,4 @@ in [test/test1results.txt](test/test1results.txt) and the detailed output saved 
 
 <br />
 
-(c) BokkyPooBah / Bok Consulting Pty Ltd - May 23 2018. [GNU Lesser General Public License 3.0](https://www.gnu.org/licenses/lgpl-3.0.en.html)
+(c) BokkyPooBah / Bok Consulting Pty Ltd - May 26 2018. [GNU Lesser General Public License 3.0](https://www.gnu.org/licenses/lgpl-3.0.en.html)
