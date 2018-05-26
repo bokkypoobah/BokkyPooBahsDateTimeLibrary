@@ -8,7 +8,7 @@ Instead of using loops and lookup tables, this date conversions library uses for
 
 <br />
 
-If you find this library useful for your project, **especially commercial projects**, please donate to [bokkypoobah.eth](https://etherscan.io/address/0x000001f568875f378bf6d170b790967fe429c81a).
+If you find this library useful for your project, **especially commercial projects**, please donate to [0xb6dAC2C5A0222f6794265249ACE15568B750c2d1](https://etherscan.io/address/0xb6dAC2C5A0222f6794265249ACE15568B750c2d1). I hope to cover my cost to get this library audited.
 
 <br />
 
@@ -17,6 +17,7 @@ If you find this library useful for your project, **especially commercial projec
 ## Table Of Contents
 
 * [History](#history)
+* [Questions And Answers](#questions-and-answers)
 * [Conventions](#conventions)
 * [Functions](#functions)
   * [_daysFromDate](#_daysfromdate)
@@ -69,6 +70,63 @@ If you find this library useful for your project, **especially commercial projec
 Version           | Date         | Notes
 :---------------- |:------------ |:---------------------------------------
 v1.00-pre-release | May 25 2018  | "Rarefaction" pre-release. I'm currently trying to get this library audited, so don't use in production mode yet.
+
+<br />
+
+<hr />
+
+## Questions And Answers
+
+### Questions by `_dredge`
+
+User [/u/_dredge](https://www.reddit.com/user/_dredge) asked the [following questions](https://www.reddit.com/r/ethereum/comments/8m3p4j/bokkypoobahs_datetime_library_a_solidity/dzkss7n/):
+
+> Some Muslim countries have a Friday/Saturday weekend. Workday(1-7) may be more useful.
+>
+> I presume leap seconds and such details are taken care of in the Unix timecode.
+>
+> Some additional ideas for functions below.
+>
+> Quarter calculations
+>
+> weekNumber(1-53)
+>
+> Complete years / months / weeks / days
+>
+> Nearest years / months / weeks / days
+
+Regarding regions and systems where Friday/Saturday are weekends, please use the function `getDayOfWeek(timestamp)` that returns 1 (= Monday, ..., 7 (= Sunday) to determine whether you should treat a day as a weekday or weekend.
+
+See the next question regarding the leap seconds.
+
+Regarding the additional ideas, thanks!
+
+<br />
+
+### What about the leap second?
+
+Asked by [Oleksii Matiiasevych](https://github.com/lastperson) and */u/_dredge* above.
+
+For example, a [leap second](https://en.wikipedia.org/wiki/Unix_time#Leap_seconds) was inserted on Jan 01 1999.
+
+From the first answer to [Unix time and leap seconds](https://stackoverflow.com/a/16539483):
+
+> The number of seconds per day are fixed with Unix timestamps.
+>
+> > The Unix time number is zero at the Unix epoch, and increases by exactly 86400 per day since the epoch.
+>
+> So it cannot represent leap seconds. The OS will slow down the clock to accommodate for this. The leap seconds is simply not existent as far a Unix timestamps are concerned.
+
+And from the second answer to [Unix time and leap seconds](https://stackoverflow.com/a/16539734):
+
+> Unix time is easy to work with, but some timestamps are not real times, and some timestamps are not unique times.
+>
+> That is, there are some duplicate timestamps representing two different seconds in time, because in unix time the sixtieth second might have to repeat itself (as there can't be a sixty-first second). Theoretically, they could also be gaps in the future because the sixtieth second doesn't have to exist, although no skipping leap seconds have been issued so far.
+>
+> Rationale for unix time: it's defined so that it's easy to work with. Adding support for leap seconds to the standard libraries is very tricky. 
+> ...
+
+This library aims to replicate the [Unix time](https://en.wikipedia.org/wiki/Unix_time) functionality and assumes that leap seconds are handled by the underlying operating system.
 
 <br />
 
