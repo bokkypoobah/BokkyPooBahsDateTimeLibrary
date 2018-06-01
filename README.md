@@ -10,6 +10,8 @@ Instead of using loops and lookup tables, this date conversions library uses for
 
 If you find this library useful for your project, **especially commercial projects**, please donate to [0xb6dAC2C5A0222f6794265249ACE15568B750c2d1](https://etherscan.io/address/0xb6dAC2C5A0222f6794265249ACE15568B750c2d1). I hope to cover my cost to get this library audited.
 
+If there is sufficient interest and donations, this library will be extended (or built upon) to handle financial date calculations like cashflow generation, days basis (ACT/ACT, ACT/365, 30/360, ...), regional holidays in a shared smart contract database, potentially with a Decentralised Autonomous Organisation as the keeper of this database.
+
 <br />
 
 <hr />
