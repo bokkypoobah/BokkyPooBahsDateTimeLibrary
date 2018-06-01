@@ -62,6 +62,7 @@ If there is sufficient interest and donations, this library will be extended (or
 * [Gas Cost](#gas-cost)
 * [Algorithm](#algorithm)
 * [Testing](#testing)
+* [References](#references)
 
 <br />
 
@@ -709,6 +710,14 @@ in [test/test1results.txt](test/test1results.txt) and the detailed output saved 
 
 <br />
 
+<hr />
+
+## References
+
+A copy of the webpage with the algorithm [Converting Between Julian Dates and Gregorian Calendar Dates](http://aa.usno.navy.mil/faq/docs/JD_Formula.php) has been saved to [docs/ConvertingBetweenJulianDatesAndGregorianCalendarDates.pdf](docs/ConvertingBetweenJulianDatesAndGregorianCalendarDates.pdf) as some people have had difficulty accessing this page.
+
 <br />
 
-(c) BokkyPooBah / Bok Consulting Pty Ltd - May 26 2018. [GNU Lesser General Public License 3.0](https://www.gnu.org/licenses/lgpl-3.0.en.html)
+<br />
+
+(c) BokkyPooBah / Bok Consulting Pty Ltd - Jun 2 2018. [GNU Lesser General Public License 3.0](https://www.gnu.org/licenses/lgpl-3.0.en.html)
