@@ -19,6 +19,7 @@ If there is sufficient interest and donations, this library will be extended (or
 ## Table Of Contents
 
 * [History](#history)
+* [Deployment](#deployment)
 * [Questions And Answers](#questions-and-answers)
 * [Conventions](#conventions)
 * [Functions](#functions)
@@ -70,9 +71,19 @@ If there is sufficient interest and donations, this library will be extended (or
 
 ## History
 
-Version           | Date         | Notes
-:---------------- |:------------ |:---------------------------------------
-v1.00-pre-release | May 25 2018  | "Rarefaction" pre-release. I'm currently trying to get this library audited, so don't use in production mode yet.
+Version             | Date         | Notes
+:------------------ |:------------ |:---------------------------------------
+v1.00-pre-release   | May 25 2018  | "Rarefaction" pre-release. I'm currently trying to get this library audited, so don't use in production mode yet.
+v1.00-pre-release-a | Jun 2 2018   | "Rarefaction" pre-release. Added the [contracts/BokkyPooBahsDateTimeContract.sol](contracts/BokkyPooBahsDateTimeContract.sol) wrapper for convenience
+v1.00-pre-release-b | Jun 4 2018   | "Rarefaction" pre-release. Replaced  public function with internal for easier EtherScan verification - [a83e13b](https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary/commit/a83e13bef31e8ef399007dd237e42bd5cdf479e6) .<br /> Deployed [contracts/BokkyPooBahsDateTimeContract.sol](contracts/BokkyPooBahsDateTimeContract.sol) to the [Ropsten network](deployment/deployment-v1.00-prerelease.md) at address [0x07239bb079094481bfaac91ca842426860021aaa](https://ropsten.etherscan.io/address/0x07239bb079094481bfaac91ca842426860021aaa#code)
+
+<br />
+
+<hr />
+
+## Deployment
+
+TODO
 
 <br />
 
