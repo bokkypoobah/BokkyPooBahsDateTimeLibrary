@@ -76,6 +76,7 @@ Version             | Date         | Notes
 v1.00-pre-release   | May 25 2018  | "Rarefaction" pre-release. I'm currently trying to get this library audited, so don't use in production mode yet.
 v1.00-pre-release-a | Jun 2 2018   | "Rarefaction" pre-release a. Added the [contracts/BokkyPooBahsDateTimeContract.sol](contracts/BokkyPooBahsDateTimeContract.sol) wrapper for convenience.<br />[Alex Kampa](https://github.com/alex-kampa) conducted a range of [tests](https://github.com/alex-kampa/test_BokkyPooBahsDateTimeLibrary) on the library.
 v1.00-pre-release-b | Jun 4 2018   | "Rarefaction" pre-release b. Replaced  public function with internal for easier EtherScan verification - [a83e13b](https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary/commit/a83e13bef31e8ef399007dd237e42bd5cdf479e6) .<br /> Deployed [contracts/BokkyPooBahsDateTimeContract.sol](contracts/BokkyPooBahsDateTimeContract.sol) with the inlined [contracts/BokkyPooBahsDateTimeLibrary.sol](contracts/BokkyPooBahsDateTimeLibrary.sol) to the [Ropsten network](deployment/deployment-v1.00-prerelease.md) at address [0x07239bb079094481bfaac91ca842426860021aaa](https://ropsten.etherscan.io/address/0x07239bb079094481bfaac91ca842426860021aaa#code)
+v1.00-pre-release-c | June 8 2018  | "Rarefaction" pre-release c. Added [check](https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary/commit/4002b278d1779fcd4f3f4527a60a5887ee6c20ba) `require(year >= 1970)` as highlighted in JZaki's audit
 
 <br />
 

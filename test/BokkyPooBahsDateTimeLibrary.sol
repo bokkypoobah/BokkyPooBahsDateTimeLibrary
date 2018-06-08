@@ -57,6 +57,7 @@ library BokkyPooBahsDateTimeLibrary {
     //      - offset
     // ------------------------------------------------------------------------
     function _daysFromDate(uint year, uint month, uint day) internal pure returns (uint _days) {
+        require(year >= 1970);
         int _year = int(year);
         int _month = int(month);
         int _day = int(day);
