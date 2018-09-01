@@ -1,6 +1,6 @@
 # BokkyPooBah's DateTime Library
 
-**Status: I'm currently trying to get this library audited, so don't use in production mode yet. Feedback welcome.**
+**Status: This library is currently being tested and audited. Feedback welcome.**
 
 A gas-efficient Solidity date and time library.
 
@@ -8,7 +8,7 @@ Instead of using loops and lookup tables, this date conversions library uses for
 
 <br />
 
-If you find this library useful for your project, **especially commercial projects**, please donate to [0xb6dAC2C5A0222f6794265249ACE15568B750c2d1](https://etherscan.io/address/0xb6dAC2C5A0222f6794265249ACE15568B750c2d1). I hope to cover my cost to get this library audited.
+If you find this library useful for your project, **especially commercial projects**, please donate to [0xb6dAC2C5A0222f6794265249ACE15568B750c2d1](https://etherscan.io/address/0xb6dAC2C5A0222f6794265249ACE15568B750c2d1). I hope to cover my cost of getting this library independently audited.
 
 If there is sufficient interest and donations, this library will be extended (or built upon) to handle financial date calculations like cashflow generation, days basis (ACT/ACT, ACT/365, 30/360, ...), regional holidays in a shared smart contract database, potentially with a Decentralised Autonomous Organisation as the keeper of this database.
 
@@ -29,6 +29,8 @@ If there is sufficient interest and donations, this library will be extended (or
   * [timestampFromDateTime](#timestampfromdatetime)
   * [timestampToDate](#timestamptodate)
   * [timestampToDateTime](#timestamptodatetime)
+  * [isValidDate](#isvaliddate)
+  * [isValidDateTime](#isvaliddatetime)
   * [isLeapYear](#isleapyear)
   * [_isLeapYear](#_isleapyear)
   * [isWeekDay](#isweekday)
@@ -76,7 +78,8 @@ Version             | Date         | Notes
 v1.00-pre-release   | May 25 2018  | "Rarefaction" pre-release. I'm currently trying to get this library audited, so don't use in production mode yet.
 v1.00-pre-release-a | Jun 2 2018   | "Rarefaction" pre-release a. Added the [contracts/BokkyPooBahsDateTimeContract.sol](contracts/BokkyPooBahsDateTimeContract.sol) wrapper for convenience.<br />[Alex Kampa](https://github.com/alex-kampa) conducted a range of [tests](https://github.com/alex-kampa/test_BokkyPooBahsDateTimeLibrary) on the library.
 v1.00-pre-release-b | Jun 4 2018   | "Rarefaction" pre-release b. Replaced  public function with internal for easier EtherScan verification - [a83e13b](https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary/commit/a83e13bef31e8ef399007dd237e42bd5cdf479e6) .<br /> Deployed [contracts/BokkyPooBahsDateTimeContract.sol](contracts/BokkyPooBahsDateTimeContract.sol) with the inlined [contracts/BokkyPooBahsDateTimeLibrary.sol](contracts/BokkyPooBahsDateTimeLibrary.sol) to the [Ropsten network](deployment/deployment-v1.00-prerelease.md) at address [0x07239bb079094481bfaac91ca842426860021aaa](https://ropsten.etherscan.io/address/0x07239bb079094481bfaac91ca842426860021aaa#code)
-v1.00-pre-release-c | June 8 2018  | "Rarefaction" pre-release c. Added [check](https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary/commit/4002b278d1779fcd4f3f4527a60a5887ee6c20ba) `require(year >= 1970)` as highlighted in JZaki's audit
+v1.00-pre-release-c | June 8 2018  | "Rarefaction" pre-release c. Added `require(year >= 1970)` to `_daysFromDate(...)` in [4002b27](https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary/commit/4002b278d1779fcd4f3f4527a60a5887ee6c20ba) as highlighted in [James Zaki](https://github.com/jzaki)'s audit
+v1.00-pre-release-d | Sep 1 2018  | "Rarefaction" pre-release d. Added [isValidDate(...)](#isvaliddate) and [isValidDateTime(...)](#isvaliddatetime) in [380061b](https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary/commit/380061b9d20c83450ee303f709fe58e973c5f4a9) as highlighted in [Adrian Guerrera](https://github.com/apguerrera)'s audit
 
 <br />
 
@@ -145,6 +148,22 @@ This library aims to replicate the [Unix time](https://en.wikipedia.org/wiki/Uni
 
 <br />
 
+### What is the maximum year 2345?
+
+Asked by [Adrian Guerrera](https://github.com/apguerrera).
+
+**2345** is just an arbitrary number chosen for the year limit to test to. The algorithm should still work beyond this date.
+
+<br />
+
+### Why are there no input validations to some of the functions?
+
+Asked by [Adrian Guerrera](https://github.com/apguerrera). Specifically, the functions [_daysFromDate](#_daysfromdate), [timestampFromDate](#timestampfromdate) and [timestampFromDateTime](#timestampfromdatetime).
+
+The date and time inputs should be validated before the values are passed to these functions. The validation functions [isValidDate(...)](#isvaliddate) and [isValidDateTime(...)](#isvaliddatetime) have now been added for this purpose.
+
+<br />
+
 <hr />
 
 ## Conventions
@@ -181,6 +200,8 @@ Calculate the number of days `_days` from 1970/01/01 to `year`/`month`/`day`.
 function _daysFromDate(uint year, uint month, uint day) public pure returns (uint _days)
 ```
 
+**NOTE** This function does not validate the `year`/`month`/`day` input. Use [`isValidDate(...)`](#isvaliddate) to validate the input if necessary.
+
 <br />
 
 ### _daysToDate
@@ -201,6 +222,8 @@ Calculate the `timestamp` to `year`/`month`/`day`.
 function timestampFromDate(uint year, uint month, uint day) public pure returns (uint timestamp)
 ```
 
+**NOTE** This function does not validate the `year`/`month`/`day` input. Use [`isValidDate(...)`](#isvaliddate) to validate the input if necessary.
+
 <br />
 
 ### timestampFromDateTime
@@ -210,6 +233,8 @@ Calculate the `timestamp` to `year`/`month`/`day` `hour`:`minute`:`second` UTC.
 ```javascript
 function timestampFromDateTime(uint year, uint month, uint day, uint hour, uint minute, uint second) public pure returns (uint timestamp)
 ```
+
+**NOTE** This function does not validate the `year`/`month`/`day` `hour`:`minute`:`second` input. Use [`isValidDateTime(...)`](#isvaliddatetime) to validate the input if necessary.
 
 <br />
 
@@ -229,6 +254,28 @@ Calculate `year`/`month`/`day` `hour`:`minute`:`second` from `timestamp`.
 
 ```javascript
 function timestampToDateTime(uint timestamp) public pure returns (uint year, uint month, uint day, uint hour, uint minute, uint second)
+```
+
+<br />
+
+### isValidDate
+
+Is the date specified by `year`/`month`/`day` a valid date?
+
+```javascript_
+function isValidDate(uint year, uint month, uint day) internal pure returns (bool valid)
+```
+
+<br />
+
+<br />
+
+### isValidDateTime
+
+Is the date/time specified by `year`/`month`/`day` `hour`:`minute`:`second` a valid date/time?
+
+```javascript_
+function isValidDateTime(uint year, uint month, uint day, uint hour, uint minute, uint second) internal pure returns (bool valid)
 ```
 
 <br />
@@ -704,6 +751,8 @@ in [test/test1results.txt](test/test1results.txt) and the detailed output saved 
 
 * [x] Deploy [contracts/BokkyPooBahsDateTimeLibrary.sol](contracts/BokkyPooBahsDateTimeLibrary.sol) library
 * [x] Deploy [contracts/TestDateTime.sol](contracts/TestDateTime.sol) contract
+* [x] Test `isValidDate(...)`
+* [x] Test `isValidDateTime(...)`
 * [x] Test `isLeapYear(...)`
 * [x] Test `_isLeapYear(...)`
 * [x] Test `isWeekDay(...)`
@@ -732,4 +781,4 @@ A copy of the webpage with the algorithm [Converting Between Julian Dates and Gr
 
 <br />
 
-(c) BokkyPooBah / Bok Consulting Pty Ltd - Jun 2 2018. [GNU Lesser General Public License 3.0](https://www.gnu.org/licenses/lgpl-3.0.en.html)
+(c) BokkyPooBah / Bok Consulting Pty Ltd - Sep 1 2018. [GNU Lesser General Public License 3.0](https://www.gnu.org/licenses/lgpl-3.0.en.html)

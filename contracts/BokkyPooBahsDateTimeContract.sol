@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.24;
 
 // ----------------------------------------------------------------------------
 // BokkyPooBah's DateTime Library v1.00 - Contract Instance
@@ -69,6 +69,12 @@ contract BokkyPooBahsDateTimeContract {
         (year, month, day, hour, minute, second) = BokkyPooBahsDateTimeLibrary.timestampToDateTime(timestamp);
     }
 
+    function isValidDate(uint year, uint month, uint day) public pure returns (bool valid) {
+    	valid = BokkyPooBahsDateTimeLibrary.isValidDate(year, month, day);
+    }
+    function isValidDateTime(uint year, uint month, uint day, uint hour, uint minute, uint second) public pure returns (bool valid) {
+    	valid = BokkyPooBahsDateTimeLibrary.isValidDateTime(year, month, day, hour, minute, second);
+    }
     function isLeapYear(uint timestamp) public pure returns (bool leapYear) {
         leapYear = BokkyPooBahsDateTimeLibrary.isLeapYear(timestamp);
     }
