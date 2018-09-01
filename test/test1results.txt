@@ -38,13 +38,13 @@
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy DateTime Library
-dateTimeLibTx status=0x1 Success gas=6000000 gasUsed=74748 costETH=0.001195968 costUSD=0.80812753728 @ ETH/USD=675.71 gasPrice=16 gwei block=28 txIx=0 txId=0x419f688b09e8d789f2617f243ff3f4f527bc3f823a6719fdedb246c0ee2f3820 @ 1528450316 Fri, 08 Jun 2018 09:31:56 UTC
+dateTimeLibTx status=0x1 Success gas=6000000 gasUsed=74748 costETH=0.001195968 costUSD=0.80812753728 @ ETH/USD=675.71 gasPrice=16 gwei block=30 txIx=0 txId=0x1026a34753653dc3bc4de670cff6a0e4d48ad754660378a0aae4e050d521d676 @ 1535866299 Sun, 02 Sep 2018 05:31:39 UTC
 
 ---------- Deploy TestDateTime Contract ----------
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.017945328000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.017945328000000000           0.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.019090528000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.019090528000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Alice
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Bob
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Carol
@@ -62,12 +62,28 @@ dateTimeLibTx status=0x1 Success gas=6000000 gasUsed=74748 costETH=0.001195968 c
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy TestDateTime Contract
-testDateTimeAddress=0x0e946b999033257976aa5cbe0e3530618ca1582d status=0x1 Success gas=6000000 gasUsed=1046835 costETH=0.01674936 costUSD=11.3177100456 @ ETH/USD=675.71 gasPrice=16 gwei block=30 txIx=0 txId=0xa6bfa0bdc932aab254fd5e3ea1797a9df82d0eeff1725617112fce26dac5b97b @ 1528450318 Fri, 08 Jun 2018 09:31:58 UTC
+testDateTimeAddress=0x0e946b999033257976aa5cbe0e3530618ca1582d status=0x1 Success gas=6000000 gasUsed=1118410 costETH=0.01789456 costUSD=12.0915331376 @ ETH/USD=675.71 gasPrice=16 gwei block=32 txIx=0 txId=0x611859ffcbe408de952cbf8227b548532e64472e61a50beb4c6efc84a131a5d4 @ 1535866301 Sun, 02 Sep 2018 05:31:41 UTC
 
 ---------- Test isLeapYear ----------
 PASS 2000,5,24,1,2,3 is a leap year
 PASS 2100,5,24,1,2,3 is a not leap year
 PASS 2104,5,24,1,2,3 is a leap year
+
+---------- Test isValidDate and isValidDateTime ----------
+PASS testDateTime.isValidDate(1969, 1, 1) is false
+PASS testDateTime.isValidDate(1970, 1, 1) is true
+PASS testDateTime.isValidDate(2000, 2, 29) is true
+PASS testDateTime.isValidDate(2001, 2, 29) is false
+PASS testDateTime.isValidDate(2001, 0, 1) is false
+PASS testDateTime.isValidDate(2001, 1, 0) is false
+PASS testDateTime.isValidDateTime(2000, 2, 29, 0, 0, 0) is true
+PASS testDateTime.isValidDateTime(2000, 2, 29, 1, 1, 1) is true
+PASS testDateTime.isValidDateTime(2000, 2, 29, 23, 1, 1) is true
+PASS testDateTime.isValidDateTime(2000, 2, 29, 24, 1, 1) is false
+PASS testDateTime.isValidDateTime(2000, 2, 29, 1, 59, 1) is true
+PASS testDateTime.isValidDateTime(2000, 2, 29, 1, 60, 1) is false
+PASS testDateTime.isValidDateTime(2000, 2, 29, 1, 1, 59) is true
+PASS testDateTime.isValidDateTime(2000, 2, 29, 1, 1, 60) is false
 
 ---------- Test _isLeapYear ----------
 PASS 2000 is a leap year

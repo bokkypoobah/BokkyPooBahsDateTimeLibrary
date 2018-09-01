@@ -59,6 +59,13 @@ contract TestDateTime {
         dayOfWeek = BokkyPooBahsDateTimeLibrary.getDayOfWeek(timestamp);
     }
 
+    function isValidDate(uint year, uint month, uint day) public pure returns (bool valid) {
+        valid = BokkyPooBahsDateTimeLibrary.isValidDate(year, month, day);
+    }
+    function isValidDateTime(uint year, uint month, uint day, uint hour, uint minute, uint second) public pure returns (bool valid) {
+        valid = BokkyPooBahsDateTimeLibrary.isValidDateTime(year, month, day, hour, minute, second);
+    }
+
     function getYear(uint timestamp) public pure returns (uint year) {
         year = BokkyPooBahsDateTimeLibrary.getYear(timestamp);
     }

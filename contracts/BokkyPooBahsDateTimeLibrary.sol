@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.24;
 
 // ----------------------------------------------------------------------------
 // BokkyPooBah's DateTime Library v1.00
@@ -126,6 +126,21 @@ library BokkyPooBahsDateTimeLibrary {
         second = secs % SECONDS_PER_MINUTE;
     }
 
+    function isValidDate(uint year, uint month, uint day) internal pure returns (bool valid) {
+        if (year >= 1970 && month > 0 && month <= 12) {
+            uint daysInMonth = _getDaysInMonth(year, month);
+            if (day > 0 && day <= daysInMonth) {
+                valid = true;
+            }
+        }
+    }
+    function isValidDateTime(uint year, uint month, uint day, uint hour, uint minute, uint second) internal pure returns (bool valid) {
+        if (isValidDate(year, month, day)) {
+            if (hour < 24 && minute < 60 && second < 60) {
+                valid = true;
+            }
+        }
+    }
     function isLeapYear(uint timestamp) internal pure returns (bool leapYear) {
         uint year;
         uint month;

@@ -176,6 +176,53 @@ if ("$MODE" == "full") {
 }
 
 if ("$MODE" == "full") {
+  console.log("RESULT: ---------- Test isValidDate and isValidDateTime ----------");
+  if (!assert(testDateTime.isValidDate(1969, 1, 1) == false, "testDateTime.isValidDate(1969, 1, 1) is false")) {
+    failureDetected = true;
+  }
+  if (!assert(testDateTime.isValidDate(1970, 1, 1) == true, "testDateTime.isValidDate(1970, 1, 1) is true")) {
+    failureDetected = true;
+  }
+  if (!assert(testDateTime.isValidDate(2000, 2, 29) == true, "testDateTime.isValidDate(2000, 2, 29) is true")) {
+    failureDetected = true;
+  }
+  if (!assert(testDateTime.isValidDate(2001, 2, 29) == false, "testDateTime.isValidDate(2001, 2, 29) is false")) {
+    failureDetected = true;
+  }
+  if (!assert(testDateTime.isValidDate(2001, 0, 1) == false, "testDateTime.isValidDate(2001, 0, 1) is false")) {
+    failureDetected = true;
+  }
+  if (!assert(testDateTime.isValidDate(2001, 1, 0) == false, "testDateTime.isValidDate(2001, 1, 0) is false")) {
+    failureDetected = true;
+  }
+  if (!assert(testDateTime.isValidDateTime(2000, 2, 29, 0, 0, 0) == true, "testDateTime.isValidDateTime(2000, 2, 29, 0, 0, 0) is true")) {
+    failureDetected = true;
+  }
+  if (!assert(testDateTime.isValidDateTime(2000, 2, 29, 1, 1, 1) == true, "testDateTime.isValidDateTime(2000, 2, 29, 1, 1, 1) is true")) {
+    failureDetected = true;
+  }
+  if (!assert(testDateTime.isValidDateTime(2000, 2, 29, 23, 1, 1) == true, "testDateTime.isValidDateTime(2000, 2, 29, 23, 1, 1) is true")) {
+    failureDetected = true;
+  }
+  if (!assert(testDateTime.isValidDateTime(2000, 2, 29, 24, 1, 1) == false, "testDateTime.isValidDateTime(2000, 2, 29, 24, 1, 1) is false")) {
+    failureDetected = true;
+  }
+  if (!assert(testDateTime.isValidDateTime(2000, 2, 29, 1, 59, 1) == true, "testDateTime.isValidDateTime(2000, 2, 29, 1, 59, 1) is true")) {
+    failureDetected = true;
+  }
+  if (!assert(testDateTime.isValidDateTime(2000, 2, 29, 1, 60, 1) == false, "testDateTime.isValidDateTime(2000, 2, 29, 1, 60, 1) is false")) {
+    failureDetected = true;
+  }
+  if (!assert(testDateTime.isValidDateTime(2000, 2, 29, 1, 1, 59) == true, "testDateTime.isValidDateTime(2000, 2, 29, 1, 1, 59) is true")) {
+    failureDetected = true;
+  }
+  if (!assert(testDateTime.isValidDateTime(2000, 2, 29, 1, 1, 60) == false, "testDateTime.isValidDateTime(2000, 2, 29, 1, 1, 60) is false")) {
+    failureDetected = true;
+  }
+  console.log("RESULT: ");
+}
+
+if ("$MODE" == "full") {
   console.log("RESULT: ---------- Test _isLeapYear ----------");
   if (!assert(testDateTime._isLeapYear(2000), "2000 is a leap year")) {
     failureDetected = true;
