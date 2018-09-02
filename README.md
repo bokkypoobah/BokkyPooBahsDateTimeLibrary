@@ -691,6 +691,75 @@ From my latesr testing with Remix using Solidity 0.4.24:
 
 <br />
 
+### Remix Gas Estimates
+
+Remix gas estimates using Solidity 0.4.24:
+
+```json
+{
+    "Creation": {
+        "codeDepositCost": "908400",
+        "executionCost": "942",
+        "totalCost": "909342"
+    },
+    "External": {
+        "DOW_FRI()": "1130",
+        "DOW_MON()": "1262",
+        "DOW_SAT()": "1064",
+        "DOW_SUN()": "360",
+        "DOW_THU()": "1108",
+        "DOW_TUE()": "250",
+        "DOW_WED()": "778",
+        "OFFSET19700101()": "932",
+        "SECONDS_PER_DAY()": "690",
+        "SECONDS_PER_HOUR()": "580",
+        "SECONDS_PER_MINUTE()": "1196",
+        "_daysFromDate(uint256,uint256,uint256)": "638",
+        "_daysToDate(uint256)": "1280",
+        "_getDaysInMonth(uint256,uint256)": "885",
+        "_isLeapYear(uint256)": "1115",
+        "_now()": "997",
+        "_nowDateTime()": "1562",
+        "addDays(uint256,uint256)": "772",
+        "addHours(uint256,uint256)": "662",
+        "addMinutes(uint256,uint256)": "838",
+        "addMonths(uint256,uint256)": "1851",
+        "addSeconds(uint256,uint256)": "896",
+        "addYears(uint256,uint256)": "1846",
+        "diffDays(uint256,uint256)": "1207",
+        "diffHours(uint256,uint256)": "503",
+        "diffMinutes(uint256,uint256)": "316",
+        "diffMonths(uint256,uint256)": "infinite",
+        "diffSeconds(uint256,uint256)": "712",
+        "diffYears(uint256,uint256)": "infinite",
+        "getDay(uint256)": "1114",
+        "getDayOfWeek(uint256)": "415",
+        "getDaysInMonth(uint256)": "1120",
+        "getHour(uint256)": "491",
+        "getMinute(uint256)": "1373",
+        "getMonth(uint256)": "1378",
+        "getSecond(uint256)": "810",
+        "getYear(uint256)": "1337",
+        "isLeapYear(uint256)": "1633",
+        "isValidDate(uint256,uint256,uint256)": "942",
+        "isValidDateTime(uint256,uint256,uint256,uint256,uint256,uint256)": "1269",
+        "isWeekDay(uint256)": "1284",
+        "isWeekEnd(uint256)": "624",
+        "subDays(uint256,uint256)": "1146",
+        "subHours(uint256,uint256)": "288",
+        "subMinutes(uint256,uint256)": "992",
+        "subMonths(uint256,uint256)": "2363",
+        "subSeconds(uint256,uint256)": "1336",
+        "subYears(uint256,uint256)": "1871",
+        "timestampFromDate(uint256,uint256,uint256)": "718",
+        "timestampFromDateTime(uint256,uint256,uint256,uint256,uint256,uint256)": "1077",
+        "timestampToDate(uint256)": "infinite",
+        "timestampToDateTime(uint256)": "1945"
+    }
+}
+```
+<br />
+
 <hr />
 
 ## Algorithm
