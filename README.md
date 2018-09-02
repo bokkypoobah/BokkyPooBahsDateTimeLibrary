@@ -1,16 +1,20 @@
 # BokkyPooBah's DateTime Library
 
-**Status: This library is currently being tested and audited. Feedback welcome.**
-
 A gas-efficient Solidity date and time library.
 
 Instead of using loops and lookup tables, this date conversions library uses formulae to convert year/month/day hour:minute:second to a Unix timestamp and back.
 
+See [BokkyPooBah’s Gas-Efficient Solidity DateTime Library](https://medium.com/@BokkyPooBah/bokkypoobahs-gas-efficient-solidity-datetime-library-92bf96d9b2da) for more explanations.
+
+Thank you to [Alex Kampa](https://github.com/alex-kampa), [James Zaki](https://github.com/jzaki) and [Adrian Guerrera](https://github.com/apguerrera) for helping to validate this library. Thanks also to [Oleksii Matiiasevych](https://github.com/lastperson) for asking about leap seconds.
+
 <br />
+
+<hr />
 
 If you find this library useful for your project, **especially commercial projects**, please donate to [0xb6dAC2C5A0222f6794265249ACE15568B750c2d1](https://etherscan.io/address/0xb6dAC2C5A0222f6794265249ACE15568B750c2d1). I hope to cover my cost of getting this library independently audited.
 
-If there is sufficient interest and donations, this library will be extended (or built upon) to handle financial date calculations like cashflow generation, days basis (ACT/ACT, ACT/365, 30/360, ...), regional holidays in a shared smart contract database, potentially with a Decentralised Autonomous Organisation as the keeper of this database.
+If there is sufficient interest and donations, this library will be extended (or built upon) to handle financial date calculations like cashflow generation, days basis (ACT/ACT, ACT/365, 30/360, ...), regional holidays in a shared smart contract database.
 
 <br />
 
@@ -80,6 +84,7 @@ v1.00-pre-release-a | Jun 2 2018   | "Rarefaction" pre-release a. Added the [con
 v1.00-pre-release-b | Jun 4 2018   | "Rarefaction" pre-release b. Replaced  public function with internal for easier EtherScan verification - [a83e13b](https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary/commit/a83e13bef31e8ef399007dd237e42bd5cdf479e6) .<br /> Deployed [contracts/BokkyPooBahsDateTimeContract.sol](contracts/BokkyPooBahsDateTimeContract.sol) with the inlined [contracts/BokkyPooBahsDateTimeLibrary.sol](contracts/BokkyPooBahsDateTimeLibrary.sol) to the [Ropsten network](deployment/deployment-v1.00-prerelease.md) at address [0x07239bb079094481bfaac91ca842426860021aaa](https://ropsten.etherscan.io/address/0x07239bb079094481bfaac91ca842426860021aaa#code)
 v1.00-pre-release-c | June 8 2018  | "Rarefaction" pre-release c. Added `require(year >= 1970)` to `_daysFromDate(...)` in [4002b27](https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary/commit/4002b278d1779fcd4f3f4527a60a5887ee6c20ba) as highlighted in [James Zaki](https://github.com/jzaki)'s audit
 v1.00-pre-release-d | Sep 1 2018  | "Rarefaction" pre-release d. Added [isValidDate(...)](#isvaliddate) and [isValidDateTime(...)](#isvaliddatetime) in [380061b](https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary/commit/380061b9d20c83450ee303f709fe58e973c5f4a9) as highlighted in [Adrian Guerrera](https://github.com/apguerrera)'s audit
+v1.00 | Sep 2 2018  | "Rarefaction" release
 
 <br />
 
@@ -87,7 +92,17 @@ v1.00-pre-release-d | Sep 1 2018  | "Rarefaction" pre-release d. Added [isValidD
 
 ## Deployment
 
-TODO
+[v1.00 of the source code](https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary/tree/1ea8ef42b3d8db17b910b46e4f8c124b59d77c03/contracts) for [BokkyPooBahsDateTimeContract.sol](https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary/blob/1ea8ef42b3d8db17b910b46e4f8c124b59d77c03/contracts/BokkyPooBahsDateTimeContract.sol) and [TestDateTime.sol](https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary/blob/1ea8ef42b3d8db17b910b46e4f8c124b59d77c03/contracts/TestDateTime.sol) has been deployed to:
+
+* The Ropsten network:
+  * BokkyPooBahsDateTimeContract.sol at [0x947cc35992e6723de50bf704828a01fd2d5d6641](https://ropsten.etherscan.io/address/0x947cc35992e6723de50bf704828a01fd2d5d6641#code)
+  * TestDateTime.sol at [0xa068fe3e029a972ecdda2686318806d2b19875d1](https://ropsten.etherscan.io/address/0xa068fe3e029a972ecdda2686318806d2b19875d1#code)
+
+* Mainnet:
+  * BokkyPooBahsDateTimeContract.sol at [0x23d23d8f243e57d0b924bff3a3191078af325101](https://etherscan.io/address/0x23d23d8f243e57d0b924bff3a3191078af325101#code)
+  * TestDateTime.sol at [0x78f96b2d5f717fa9ad416957b79d825cc4cce69d](https://etherscan.io/address/0x78f96b2d5f717fa9ad416957b79d825cc4cce69d#code)
+
+For each of the deployed contracts above, you can click on the *Read Contract* tab to test out the date/time/timestamp functions.
 
 <br />
 
@@ -152,7 +167,7 @@ This library aims to replicate the [Unix time](https://en.wikipedia.org/wiki/Uni
 
 Asked by [Adrian Guerrera](https://github.com/apguerrera).
 
-**2345** is just an arbitrary number chosen for the year limit to test to. The algorithm should still work beyond this date.
+**2345** is just an arbitrary number chosen for the year limit to test to. The algorithms should still work beyond this date.
 
 <br />
 
@@ -161,6 +176,24 @@ Asked by [Adrian Guerrera](https://github.com/apguerrera).
 Asked by [Adrian Guerrera](https://github.com/apguerrera). Specifically, the functions [_daysFromDate](#_daysfromdate), [timestampFromDate](#timestampfromdate) and [timestampFromDateTime](#timestampfromdatetime).
 
 The date and time inputs should be validated before the values are passed to these functions. The validation functions [isValidDate(...)](#isvaliddate) and [isValidDateTime(...)](#isvaliddatetime) have now been added for this purpose.
+
+<br />
+
+### Why are all variables 256-bit integers?
+
+This library provides a cheap conversion between the timestamp and year/month/day hour:minute:second formats. There is no requirement for this library to store a packed structure to represent a DateTime as this data can be stored as a `uint256` and converted on the fly to year/month/day hour:minute:second.
+
+<br />
+
+### Why do you call this a gas-efficient library?
+
+The formulae for converting between a timestamp and year/month/day hour:minute:second format uses a mathematically simple algorithm without any loops. The gas cost is relatively constant (as there are no loops) the mathematical computation is relative cheap (compared to using loops and looking up data from storage).
+
+<br />
+
+### Can this library be written more efficiently?
+
+Most likely. The aim of this first version is for the conversions to be computed correctly.
 
 <br />
 
@@ -781,4 +814,6 @@ A copy of the webpage with the algorithm [Converting Between Julian Dates and Gr
 
 <br />
 
-(c) BokkyPooBah / Bok Consulting Pty Ltd - Sep 1 2018. [GNU Lesser General Public License 3.0](https://www.gnu.org/licenses/lgpl-3.0.en.html)
+Enjoy!
+
+(c) BokkyPooBah / Bok Consulting Pty Ltd - Sep 2 2018. [GNU Lesser General Public License 3.0](https://www.gnu.org/licenses/lgpl-3.0.en.html)
