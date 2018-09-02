@@ -681,7 +681,7 @@ From Remix, the execution gas cost is 2,566 .
 
 ## Algorithm
 
-The formulae to convert year/month/day hour:minute:second to a Unix timestamp and back use the algorithms from [Converting Between Julian Dates and Gregorian Calendar Dates](http://aa.usno.navy.mil/faq/docs/JD_Formula.php).
+The formulae to convert year/month/day hour:minute:second to a Unix timestamp and back use the algorithms from [Converting Between Julian Dates and Gregorian Calendar Dates](http://aa.usno.navy.mil/faq/docs/JD_Formula.php). These algorithms were originally designed by [Fliegel and van Flandern (1968)](http://www.worldcat.org/title/machine-algorithm-for-processing-calendar-dates/oclc/754110896).
 
 Note that these algorithms depend on negative numbers, so Solidity unsigned integers `uint` are converted to signed integers `int` to compute the date conversions and the results are converted back to `uint` for general use.
 
