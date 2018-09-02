@@ -197,6 +197,12 @@ Most likely. The aim of this first version is for the conversions to be computed
 
 <br />
 
+### How gas-efficient is this library?
+
+From [Gas Cost](#gas-cost), `timestampToDateTime(…)` has an execution gas cost of 3,101 gas, and `timestampFromDateTime(…)` has an execution gas cost of 2,566 gas.
+
+<br />
+
 <hr />
 
 ## Conventions
@@ -660,6 +666,10 @@ From executing the following function, the transaction gas cost is 24,693
 
 From Remix, the execution gas cost is 3,101 .
 
+From my latest testing with Remix using Solidity 0.4.24:
+
+<kbd><img src="docs/timestampToDateTime.png" /></kbd>
+
 <br />
 
 ### `timestampFromDateTime(...)` Gas Cost
@@ -674,6 +684,10 @@ From executing the following function, the transaction gas cost is 25,054
 ```
 
 From Remix, the execution gas cost is 2,566 .
+
+From my latesr testing with Remix using Solidity 0.4.24:
+
+<kbd><img src="docs/timestampFromDateTime.png" /></kbd>
 
 <br />
 
