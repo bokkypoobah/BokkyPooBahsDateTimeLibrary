@@ -187,7 +187,7 @@ This library provides a cheap conversion between the timestamp and year/month/da
 
 ### Why do you call this a gas-efficient library?
 
-The formulae for converting between a timestamp and year/month/day hour:minute:second format uses a mathematically simple algorithm without any loops. The gas cost is relatively constant (as there are no loops) the mathematical computation is relative cheap (compared to using loops and looking up data from storage).
+The formulae for converting between a timestamp and year/month/day hour:minute:second format uses a mathematically simple algorithm without any loops. The gas cost is relatively constant (as there are no loops) and the mathematical computations are relative cheap (compared to using loops and looking up data from storage).
 
 <br />
 
