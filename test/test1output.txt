@@ -9,20 +9,27 @@ TESTDATETIMEJS     = 'TestDateTime.js'
 DEPLOYMENTDATA     = 'deploymentData.js'
 TEST1OUTPUT        = 'test1output.txt'
 TEST1RESULTS       = 'test1results.txt'
-CURRENTTIME        = '1535866280' 'Sun Sep  2 15:31:20 2018'
-START_DATE         = '1535866325' 'Sun Sep  2 15:32:05 2018'
-END_DATE           = '1535866400' 'Sun Sep  2 15:33:20 2018'
+CURRENTTIME        = '1550076725' 'Thu Feb 14 03:52:05 2019'
+START_DATE         = '1550076770' 'Thu Feb 14 03:52:50 2019'
+END_DATE           = '1550076845' 'Thu Feb 14 03:54:05 2019'
 --- Differences ../contracts/BokkyPooBahsDateTimeLibrary.sol BokkyPooBahsDateTimeLibrary.sol ---
 
 --- Differences ../contracts/TestDateTime.sol TestDateTime.sol ---
 
 solc, the solidity compiler commandline interface
-Version: 0.4.24+commit.e67f0147.Darwin.appleclang
+Version: 0.5.4+commit.9549d8ff.Darwin.appleclang
+contractsdir: ../contracts
+remapdir    : (no remapping)
+mainsol     : TestDateTime.sol
+outputsol   : ../flattened/TestDateTime_flattened.sol
+Processing ../contracts/TestDateTime.sol
+    Importing ../contracts/BokkyPooBahsDateTimeLibrary.sol
+    Processing ../contracts/BokkyPooBahsDateTimeLibrary.sol
 Welcome to the Geth JavaScript console!
 
-instance: Geth/v1.8.12-stable-37685930/darwin-amd64/go1.10.3
+instance: Geth/v1.8.22-stable-7fa3509e/darwin-amd64/go1.11.5
 coinbase: 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e
-at block: 12 (Sun, 02 Sep 2018 15:31:21 AEST)
+at block: 3 (Thu, 14 Feb 2019 03:52:05 AEDT)
  datadir: /Users/bok/Projects/BokkyPooBahsDateTimeLibrary/test/testchain
  modules: admin:1.0 clique:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 shh:1.0 txpool:1.0 web3:1.0
 
@@ -123,8 +130,8 @@ DATA: var dateTimeLibAbi=[];
 DATA: var dateTimeLib=eth.contract(dateTimeLibAbi).at(dateTimeLibAddress);
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.001195968000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.001195968000000000           0.000000000000000000 Account #1 - Contract Owner
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.001198016000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.001198016000000000           0.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Alice
 RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Bob
 RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Carol
@@ -145,7 +152,7 @@ undefined
 RESULT: PASS Deploy DateTime Library
 1
 > 
-RESULT: dateTimeLibTx status=0x1 Success gas=6000000 gasUsed=74748 costETH=0.001195968 costUSD=0.80812753728 @ ETH/USD=675.71 gasPrice=16 gwei block=30 txIx=0 txId=0x1026a34753653dc3bc4de670cff6a0e4d48ad754660378a0aae4e050d521d676 @ 1535866299 Sun, 02 Sep 2018 05:31:39 UTC
+RESULT: dateTimeLibTx status=0x1 Success gas=6000000 gasUsed=74876 costETH=0.001198016 costUSD=0.80951139136 @ ETH/USD=675.71 gasPrice=16 gwei block=28 txIx=0 txId=0xbc383517b572e939da6cc6501ec53df222b46cd082c6afb350b31adfefca7140 @ 1550076750 Wed, 13 Feb 2019 16:52:30 UTC
 undefined
 > 
 RESULT: 
@@ -200,8 +207,8 @@ DATA: var testDateTime=eth.contract(testDateTimeAbi).at(testDateTimeAddress);
 DATA: console.log("testDateTime=" + JSON.stringify(testDateTime));
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.019090528000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.019090528000000000           0.000000000000000000 Account #1 - Contract Owner
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.020671056000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.020671056000000000           0.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Alice
 RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Bob
 RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Carol
@@ -223,7 +230,7 @@ undefined
 RESULT: PASS Deploy TestDateTime Contract
 1
 > 
-RESULT: testDateTimeAddress=0x0e946b999033257976aa5cbe0e3530618ca1582d status=0x1 Success gas=6000000 gasUsed=1118410 costETH=0.01789456 costUSD=12.0915331376 @ ETH/USD=675.71 gasPrice=16 gwei block=32 txIx=0 txId=0x611859ffcbe408de952cbf8227b548532e64472e61a50beb4c6efc84a131a5d4 @ 1535866301 Sun, 02 Sep 2018 05:31:41 UTC
+RESULT: testDateTimeAddress=0x0e946b999033257976aa5cbe0e3530618ca1582d status=0x1 Success gas=6000000 gasUsed=1217065 costETH=0.01947304 costUSD=13.1581278584 @ ETH/USD=675.71 gasPrice=16 gwei block=30 txIx=0 txId=0x58f294754e1d18602292281b62829bd034702a925f858240fe3b80a8409a91bf @ 1550076752 Wed, 13 Feb 2019 16:52:32 UTC
 undefined
 > 
 RESULT: 

@@ -1,4 +1,4 @@
-IPCFILE=ipc:./testchain/geth.ipc
+GETHATTACHPOINT=ipc:./testchain/geth.ipc
 PASSWORD=
 
 SOURCEDIR=../contracts
@@ -7,6 +7,7 @@ DATETIMELIBSOL=BokkyPooBahsDateTimeLibrary.sol
 DATETIMELIBJS=BokkyPooBahsDateTimeLibrary.js
 TESTDATETIMESOL=TestDateTime.sol
 TESTDATETIMEJS=TestDateTime.js
+TESTDATETIMEFLATTENED=../flattened/TestDateTime_flattened.sol
 
 DEPLOYMENTDATA=deploymentData.js
 

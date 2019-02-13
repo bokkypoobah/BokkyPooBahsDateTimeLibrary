@@ -7,20 +7,10 @@
 
 MODE=${1:-full}
 
-GETHATTACHPOINT=`grep ^IPCFILE= settings.txt | sed "s/^.*=//"`
-PASSWORD=`grep ^PASSWORD= settings.txt | sed "s/^.*=//"`
-
-SOURCEDIR=`grep ^SOURCEDIR= settings.txt | sed "s/^.*=//"`
-
-DATETIMELIBSOL=`grep ^DATETIMELIBSOL= settings.txt | sed "s/^.*=//"`
-DATETIMELIBJS=`grep ^DATETIMELIBJS= settings.txt | sed "s/^.*=//"`
-TESTDATETIMESOL=`grep ^TESTDATETIMESOL= settings.txt | sed "s/^.*=//"`
-TESTDATETIMEJS=`grep ^TESTDATETIMEJS= settings.txt | sed "s/^.*=//"`
-
-DEPLOYMENTDATA=`grep ^DEPLOYMENTDATA= settings.txt | sed "s/^.*=//"`
-
-TEST1OUTPUT=`grep ^TEST1OUTPUT= settings.txt | sed "s/^.*=//"`
-TEST1RESULTS=`grep ^TEST1RESULTS= settings.txt | sed "s/^.*=//"`
+source settings
+echo "---------- Settings ----------" | tee $TEST1OUTPUT
+cat ./settings | tee -a $TEST1OUTPUT
+echo "" | tee -a $TEST1OUTPUT
 
 CURRENTTIME=`date +%s`
 CURRENTTIMES=`perl -le "print scalar localtime $CURRENTTIME"`
@@ -60,10 +50,12 @@ DIFFS1=`diff $SOURCEDIR/$TESTDATETIMESOL $TESTDATETIMESOL`
 echo "--- Differences $SOURCEDIR/$TESTDATETIMESOL $TESTDATETIMESOL ---" | tee -a $TEST1OUTPUT
 echo "$DIFFS1" | tee -a $TEST1OUTPUT
 
-solc_0.4.24 --version | tee -a $TEST1OUTPUT
+solc_0.5.4 --version | tee -a $TEST1OUTPUT
 
-echo "var dateTimeLibOutput=`solc_0.4.24 --optimize --pretty-json --combined-json abi,bin,interface $DATETIMELIBSOL`;" > $DATETIMELIBJS
-echo "var testDateTimeOutput=`solc_0.4.24 --optimize --pretty-json --combined-json abi,bin,interface $TESTDATETIMESOL`;" > $TESTDATETIMEJS
+echo "var dateTimeLibOutput=`solc_0.5.4 --optimize --pretty-json --combined-json abi,bin,interface $DATETIMELIBSOL`;" > $DATETIMELIBJS
+echo "var testDateTimeOutput=`solc_0.5.4 --optimize --pretty-json --combined-json abi,bin,interface $TESTDATETIMESOL`;" > $TESTDATETIMEJS
+../scripts/solidityFlattener.pl --contractsdir=../contracts --mainsol=$TESTDATETIMESOL --outputsol=$TESTDATETIMEFLATTENED --verbose | tee -a $TEST1OUTPUT
+
 
 geth --verbosity 3 attach $GETHATTACHPOINT << EOF | tee -a $TEST1OUTPUT
 loadScript("$DATETIMELIBJS");

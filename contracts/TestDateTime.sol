@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.5.0;
 
 import "BokkyPooBahsDateTimeLibrary.sol";
 
@@ -7,10 +7,7 @@ import "BokkyPooBahsDateTimeLibrary.sol";
 //
 // https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary
 //
-// Enjoy. (c) BokkyPooBah / Bok Consulting Pty Ltd 2018.
-//
-// GNU Lesser General Public License 3.0
-// https://www.gnu.org/licenses/lgpl-3.0.en.html
+// Enjoy. (c) BokkyPooBah / Bok Consulting Pty Ltd 2018-2019. The MIT Licence.
 // ----------------------------------------------------------------------------
 
 contract TestDateTime {
