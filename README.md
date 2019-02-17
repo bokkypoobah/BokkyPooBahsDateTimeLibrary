@@ -12,17 +12,10 @@ Thank you to [Alex Kampa](https://github.com/alex-kampa), [James Zaki](https://g
 
 <hr />
 
-If you find this library useful for your project, **especially commercial projects**, please donate to [0xb6dAC2C5A0222f6794265249ACE15568B750c2d1](https://etherscan.io/address/0xb6dAC2C5A0222f6794265249ACE15568B750c2d1). I hope to cover my cost of getting this library independently audited.
-
-If there is sufficient interest and donations, this library will be extended (or built upon) to handle financial date calculations like cashflow generation, days basis (ACT/ACT, ACT/365, 30/360, ...), regional holidays in a shared smart contract database.
-
-<br />
-
-<hr />
-
 ## Table Of Contents
 
 * [History](#history)
+* [Bug Bounty Scope And Donations](#bug-bounty-scope-and-donations)
 * [Deployment](#deployment)
 * [Questions And Answers](#questions-and-answers)
 * [Conventions](#conventions)
@@ -86,6 +79,19 @@ v1.00-pre-release-c | June 8 2018  | "Rarefaction" pre-release c. Added `require
 v1.00-pre-release-d | Sep 1 2018  | "Rarefaction" pre-release d. Added [isValidDate(...)](#isvaliddate) and [isValidDateTime(...)](#isvaliddatetime) in [380061b](https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary/commit/380061b9d20c83450ee303f709fe58e973c5f4a9) as highlighted in [Adrian Guerrera](https://github.com/apguerrera)'s audit
 v1.00 | Sep 2 2018  | "Rarefaction" release
 v1.01 | Feb 14 2019  | "Notoryctes" release. Upgraded contracts to Solidity 0.5.x.<br />Updated to MIT Licence
+v1.01 | Feb 17 2019  | Bug Bounty added
+
+<br />
+
+<hr />
+
+## Bug Bounty Scope And Donations
+
+Details of the bug bounty program for this project can be found at [BokkyPooBah's Hall Of Fame And Bug Bounties](https://github.com/bokkypoobah/BokkyPooBahsHallOfFameAndBugBounties). Please consider [donating](https://github.com/bokkypoobah/BokkyPooBahsHallOfFameAndBugBounties#donations) to support the bug bounty, and the development and maintenance of decentralised applications.
+
+The scope of the bug bounty for this project follows:
+
+* [contracts/BokkyPooBahsDateTimeLibrary.sol](contracts/BokkyPooBahsDateTimeLibrary.sol)
 
 <br />
 
@@ -900,4 +906,4 @@ A copy of the webpage with the algorithm [Converting Between Julian Dates and Gr
 
 Enjoy!
 
-(c) BokkyPooBah / Bok Consulting Pty Ltd - Feb 14 2019. The MIT Licence.
+(c) BokkyPooBah / Bok Consulting Pty Ltd - Feb 17 2019. The MIT Licence.
