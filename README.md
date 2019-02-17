@@ -1,3 +1,9 @@
+<kbd><img src="images/clocks.png" /></kbd>
+
+<br />
+
+<hr />
+
 # BokkyPooBah's DateTime Library
 
 A gas-efficient Solidity date and time library.
@@ -79,7 +85,7 @@ v1.00-pre-release-c | June 8 2018  | "Rarefaction" pre-release c. Added `require
 v1.00-pre-release-d | Sep 1 2018  | "Rarefaction" pre-release d. Added [isValidDate(...)](#isvaliddate) and [isValidDateTime(...)](#isvaliddatetime) in [380061b](https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary/commit/380061b9d20c83450ee303f709fe58e973c5f4a9) as highlighted in [Adrian Guerrera](https://github.com/apguerrera)'s audit
 v1.00 | Sep 2 2018  | "Rarefaction" release
 v1.01 | Feb 14 2019  | "Notoryctes" release. Upgraded contracts to Solidity 0.5.x.<br />Updated to MIT Licence
-v1.01 | Feb 17 2019  | Bug Bounty added
+v1.01 | Feb 17 2019  | Bug bounty added
 
 <br />
 
