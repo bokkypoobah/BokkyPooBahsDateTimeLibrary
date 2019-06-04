@@ -234,7 +234,7 @@ second         | 0 ... 59                  |
 dayOfWeek      | 1 ... 7                   | 1 = Monday, ..., 7 = Sunday
 year/month/day | 1970/01/01 ... 2345/12/31 |
 
-`_days`, `_months` and `_years` variable names are `_`-prefixed as the non-prefixed versions are reserve words in Solidity.
+`_days`, `_months` and `_years` variable names are `_`-prefixed as the non-prefixed versions are reserved words in Solidity.
 
 All functions operate on the `uint` timestamp data type, except for functions prefixed with `_`.
 
@@ -698,7 +698,7 @@ From executing the following function, the transaction gas cost is 25,054
 
 From Remix, the execution gas cost is 2,566 .
 
-From my latesr testing with Remix using Solidity 0.4.24:
+From my latest testing with Remix using Solidity 0.4.24:
 
 <kbd><img src="docs/timestampFromDateTime.png" /></kbd>
 
