@@ -140,9 +140,7 @@ library BokkyPooBahsDateTimeLibrary {
     }
     function isLeapYear(uint timestamp) internal pure returns (bool leapYear) {
         uint year;
-        uint month;
-        uint day;
-        (year, month, day) = _daysToDate(timestamp / SECONDS_PER_DAY);
+        (year,,) = _daysToDate(timestamp / SECONDS_PER_DAY);
         leapYear = _isLeapYear(year);
     }
     function _isLeapYear(uint year) internal pure returns (bool leapYear) {
@@ -157,8 +155,7 @@ library BokkyPooBahsDateTimeLibrary {
     function getDaysInMonth(uint timestamp) internal pure returns (uint daysInMonth) {
         uint year;
         uint month;
-        uint day;
-        (year, month, day) = _daysToDate(timestamp / SECONDS_PER_DAY);
+        (year, month,) = _daysToDate(timestamp / SECONDS_PER_DAY);
         daysInMonth = _getDaysInMonth(year, month);
     }
     function _getDaysInMonth(uint year, uint month) internal pure returns (uint daysInMonth) {
@@ -177,19 +174,13 @@ library BokkyPooBahsDateTimeLibrary {
     }
 
     function getYear(uint timestamp) internal pure returns (uint year) {
-        uint month;
-        uint day;
-        (year, month, day) = _daysToDate(timestamp / SECONDS_PER_DAY);
+        (year,,) = _daysToDate(timestamp / SECONDS_PER_DAY);
     }
     function getMonth(uint timestamp) internal pure returns (uint month) {
-        uint year;
-        uint day;
-        (year, month, day) = _daysToDate(timestamp / SECONDS_PER_DAY);
+        (,month,) = _daysToDate(timestamp / SECONDS_PER_DAY);
     }
     function getDay(uint timestamp) internal pure returns (uint day) {
-        uint year;
-        uint month;
-        (year, month, day) = _daysToDate(timestamp / SECONDS_PER_DAY);
+        (,,day) = _daysToDate(timestamp / SECONDS_PER_DAY);
     }
     function getHour(uint timestamp) internal pure returns (uint hour) {
         uint secs = timestamp % SECONDS_PER_DAY;
@@ -296,25 +287,19 @@ library BokkyPooBahsDateTimeLibrary {
     function diffYears(uint fromTimestamp, uint toTimestamp) internal pure returns (uint _years) {
         require(fromTimestamp <= toTimestamp);
         uint fromYear;
-        uint fromMonth;
-        uint fromDay;
         uint toYear;
-        uint toMonth;
-        uint toDay;
-        (fromYear, fromMonth, fromDay) = _daysToDate(fromTimestamp / SECONDS_PER_DAY);
-        (toYear, toMonth, toDay) = _daysToDate(toTimestamp / SECONDS_PER_DAY);
+        (fromYear,,) = _daysToDate(fromTimestamp / SECONDS_PER_DAY);
+        (toYear,,) = _daysToDate(toTimestamp / SECONDS_PER_DAY);
         _years = toYear - fromYear;
     }
     function diffMonths(uint fromTimestamp, uint toTimestamp) internal pure returns (uint _months) {
         require(fromTimestamp <= toTimestamp);
         uint fromYear;
         uint fromMonth;
-        uint fromDay;
         uint toYear;
         uint toMonth;
-        uint toDay;
-        (fromYear, fromMonth, fromDay) = _daysToDate(fromTimestamp / SECONDS_PER_DAY);
-        (toYear, toMonth, toDay) = _daysToDate(toTimestamp / SECONDS_PER_DAY);
+        (fromYear, fromMonth,) = _daysToDate(fromTimestamp / SECONDS_PER_DAY);
+        (toYear, toMonth,) = _daysToDate(toTimestamp / SECONDS_PER_DAY);
         _months = toYear * 12 + toMonth - fromYear * 12 - fromMonth;
     }
     function diffDays(uint fromTimestamp, uint toTimestamp) internal pure returns (uint _days) {
