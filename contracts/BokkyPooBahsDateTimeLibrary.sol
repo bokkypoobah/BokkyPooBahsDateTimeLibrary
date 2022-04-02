@@ -44,7 +44,7 @@ library BokkyPooBahsDateTimeLibrary {
     // ------------------------------------------------------------------------
     // Calculate the number of days from 1970/01/01 to year/month/day using
     // the date conversion algorithm from
-    //   http://aa.usno.navy.mil/faq/docs/JD_Formula.php
+    //   https://aa.usno.navy.mil/faq/JD_formula.html
     // and subtracting the offset 2440588 so that 1970/01/01 is day 0
     //
     // days = day
