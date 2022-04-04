@@ -29,7 +29,7 @@ pragma solidity >=0.6.0 <0.9.0;
 // https://www.gnu.org/licenses/lgpl-3.0.en.html
 // ----------------------------------------------------------------------------
 
-import "BokkyPooBahsDateTimeLibrary.sol";
+import "./BokkyPooBahsDateTimeLibrary.sol";
 
 contract BokkyPooBahsDateTimeContract {
     uint public constant SECONDS_PER_DAY = 24 * 60 * 60;
