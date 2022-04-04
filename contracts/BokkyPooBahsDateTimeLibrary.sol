@@ -1,8 +1,8 @@
-// SPDX-License-Identifier: MIT
+/// SPDX-License-Identifier: MIT
 pragma solidity >=0.6.0 <0.9.0;
 
 // ----------------------------------------------------------------------------
-// BokkyPooBah's DateTime Library v1.01
+// BokkyPooBah's DateTime Library v1.0.1
 //
 // A gas-efficient Solidity date and time library
 //
